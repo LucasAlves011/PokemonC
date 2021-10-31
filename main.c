@@ -1,20 +1,29 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-//typedef struct {
-//    char nome[10];
-//    int idade;
-//}aluno;
-bool andarW(int ash[]);
-void andarA();
-void andarS();
-void andarD();
-bool checar();
+/**
+ * 0 espaços navegáveis
+ * 1 espaços navegáveis com pokebolas
+ * 2 espaços navegáveis com pokemons
+ * 4 espaços não navegáveis
+ * 5 estádio pokemon
+ */
+typedef struct {
+    int posicao[2];
+    int pokemons;
+    int pokebolas;
+}ash;
 
-void imprimir(char para[12][10]){
+void andarW( ash jogador, int matriz[12][10]);
+void andarA( ash jogador, int matriz[12][10]);
+void andarS( ash *jogador, int matriz[12][10]);
+void andarD( ash jogador, int matriz[12][10]);
+
+void imprimir(int para[12][10]){
     int n = 0;
     bool entrar = true;
     bool condicao = true;
+
     for (int i = 0; i < 12; ++i) {
         if(i == 0){
             if(entrar){
@@ -35,73 +44,73 @@ void imprimir(char para[12][10]){
                 printf(" ");
                 condicao = false;
             }
-            printf("%c ",para[i][j]);
+            printf("%d ",para[i][j]);
         }
         printf("\n");
         condicao = true;
     }
+//    printf("\n");
 }
 
-//inicializar valores com _
-char mapa[12][10];
-
 int main() {
-    for (int i = 0; i < 12; ++i) {
-        for (int j = 0; j < 10; ++j) {
-            mapa[i][j] = '_';
-        }
-    }
-    int ash[2] = {0,0};
-    //adicionar obstáculos e posição do Ash
+    //iniciando os status do jogador
+    ash jogador;
+    jogador.posicao[0] = 0;
+    jogador.posicao[1] = 0;
+    jogador.pokebolas = 0;
+    jogador.pokemons = 0;
+
+    int mapaPosicional[12][10] = {0};
+
     for (int i = 0; i < 12; ++i) {
         for (int j = 0; j < 10; ++j) {
             switch (j) {
                 case 0:
                     if(i == 0){
-                        mapa[i][j] = 'A';
+                        mapaPosicional[i][j] = 0;
                     }
                     else if( i == 5 || i == 6 || (i > 7 && i <= 11))
                         if( i == 11) {
-                            mapa[i][j] = 'E';
+                            mapaPosicional[i][j] = 5;
                         } else {
-                            mapa[i][j] = 'X';
+                            mapaPosicional[i][j] = 4;
                         }
                     break;
                 case 1:
                     if((i > 0 && i < 4) || i == 5 || i == 6 || i == 8 || i == 10)
-                        mapa[i][j]='X';
+                        mapaPosicional[i][j]=4;
                     break;
                 case 2:
                     if((i > 0 && i < 4) || i ==8 || i ==10)
-                        mapa[i][j]='X';
+                        mapaPosicional[i][j]=4;
                     break;
                 case 3:
                     if(i > 0 && i < 7)
-                        mapa[i][j]= 'X';
+                        mapaPosicional[i][j]= 4;
                     break;
                 case 4:
                     if(i == 1 || i == 2 || i ==8 || i == 10 || i == 11)
-                        mapa[i][j]='X';
+                        mapaPosicional[i][j]=4;
                     break;
                 case 5:
                     if((i > 0 && i <5) || i ==6 || i ==8)
-                        mapa[i][j] = 'X';
+                        mapaPosicional[i][j] = 4;
                     break;
                 case 6:
                     if(i >3 && i <= 11)
-                        mapa[i][j]='X';
+                        mapaPosicional[i][j]=4;
                     break;
                 case 7:
                     if((i >= 0 && i <3) || (i > 3 && i < 7))
-                        mapa[i][j]='X';
+                        mapaPosicional[i][j]=4;
                     break;
                 case 8:
                     if(i > 7 && i <= 11)
-                        mapa[i][j]='X';
+                        mapaPosicional[i][j]=4;
                     break;
                 case 9:
                     if(i>0 && i <= 11)
-                        mapa[i][j]='X';
+                        mapaPosicional[i][j]=4;
                     break;
                 default:
                     break;
@@ -109,24 +118,18 @@ int main() {
         }
     }
 
-    imprimir(mapa);
-
-
-
+    imprimir(mapaPosicional);
+    printf("\n%d %d\n", jogador.posicao[0],jogador.posicao[0] );
+    andarS(&jogador,mapaPosicional);
+    imprimir(mapaPosicional);
+    printf("\n%d %d\n", jogador.posicao[0],jogador.posicao[0] );
 
 
     return 0;
 }
-//MAPA[][] ASH[0,0]
-bool andarW(int ash[]){
-    if((mapa[ash[0] - 1]) > 0 ){
-        if(mapa[ash[0]-1][ash[1]] == '_'){
-            ash[0] -= 1;
-            return true;
-        } else if(mapa[ash[0]-1][ash[1]] == 'X'){
-            return false;
-        }
-    }
-    return false;
-}
 
+void andarS(ash *jogador, int matriz[12][10]){
+    if(matriz[jogador -> posicao[0] + 1][jogador -> posicao[1]] == 0){
+        jogador -> posicao[0]+=1;
+    }
+}
