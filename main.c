@@ -62,7 +62,7 @@ void imprimir(int para[12][10], ash jogador){
     printf("\n");
 }
 int main() {
-    //iniciando os status do jogador
+    //iniciando os status do jogador, teste ssh
     setlocale(LC_ALL,"Portuguese");
 
     ash jogador;
