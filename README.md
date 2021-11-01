@@ -3,8 +3,10 @@ Questão proposta pelo professor [Péricles Miranda](https://www.linkedin.com/in
 
 Você é Ash Ketchum (A), um treinador Pokemon. O seu sonho é competir em um estádio Pokemon (E). Só que para isso você precisa ter 3
 Pokemons. Como Ash não possui pokebolas no início, para capturar pokemons, antes ele deve encontrá-las. Caso Ash encontre um pokemon sem
-possuir pokebolas disponiveis, o pokemon foge, desaparecendo do mapa. Caso Ash possua pokebolas disponiveis e passe por um pokemon, ele
+possuir pokebolas disponíveis, o pokemon foge, desaparecendo do mapa. Caso Ash possua pokebolas disponíveis e passe por um pokemon, ele
 tem 80% de chance de capturá-lo. Caso não capture, o pokemon foge do mapa.
+
+
 O mapa abaixo mostra a posição de Ash (A) e de um estádio Pokemon (E). As células escuras são caminhos navegáveis, as células brancas não são
 navegáveis. Pokemons e pokebolas só podem ser inicializados em células escuras.
 
