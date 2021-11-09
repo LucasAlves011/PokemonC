@@ -4,6 +4,15 @@
 #include <time.h>
 #include <locale.h>
 
+#define NADA 0
+#define POKEBOLA_OBTIDA 1
+#define FUGA_POKEBOLA_INSU 2
+#define POKEMON_OBTIDO 3
+#define ESTADIO_POKEMON_INSU 4
+#define ESTADIO_BATALHA 5
+#define FUGA_POKEMON 6
+#define MOVIMENTO_INVALIDO 7
+
 /**
  * são 56 espaços navegáveis porem [0,0] e [11,0] nao poderam recebar pokemons ou pokebolas
  * 0 espaços navegáveis
@@ -289,12 +298,12 @@ int andarS(ash *jogador, int matriz[12][10]){
         jogador -> posicao[0]+=1;
 //        matriz[jogador -> posicao[0] + 1][jogador -> posicao[1]] += 1;
         matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
-        return 0;
+        return NADA;
     }
 
         //movimento invalido
     else if(jogador -> posicao[0] + 1  > 11 || matriz[jogador -> posicao[0] + 1][jogador -> posicao[1]] == 4){
-        return 7;
+        return MOVIMENTO_INVALIDO;
     }
 
         //encontro com pokemons
@@ -306,18 +315,18 @@ int andarS(ash *jogador, int matriz[12][10]){
                 //conseguiu pegar o pokemon P
                 jogador -> pokemons++;
                 jogador -> pokebolas--;
-                return 3;
+                return POKEMON_OBTIDO;
             }
             else
                 //não teve exito em pegar o pokemon
                 realocarPokemon(matriz,jogador);
             jogador -> pokebolas--;
-            return 6;
+            return FUGA_POKEMON;
         }else{
             //não tinha pokebolas , o pokemon fugiu
             matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
             realocarPokemon(matriz,jogador);
-            return 2;
+            return FUGA_POKEBOLA_INSU;
         }
     }
         //encontro com pokebolas
@@ -325,17 +334,17 @@ int andarS(ash *jogador, int matriz[12][10]){
         jogador -> posicao[0]+=1;
         jogador -> pokebolas++;
         matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
-        return 1;
+        return POKEBOLA_OBTIDA;
     }
 
     else if(matriz[jogador -> posicao[0] + 1][jogador -> posicao[1]] == 5){
         jogador -> posicao[0] += 1;
         if(jogador -> pokemons > 3){
             //Início do comabte
-            return 5;
+            return ESTADIO_BATALHA;
         } else{
             //Não tem pokemons suficientes para inicio do combate
-            return 4;
+            return ESTADIO_POKEMON_INSU;
         }
     }
 }
@@ -351,7 +360,7 @@ int andarW(ash *jogador, int matriz[12][10]){
 
         //movimento invalido
     else if(jogador -> posicao[0] - 1  < 0 || matriz[jogador -> posicao[0] - 1][jogador -> posicao[1]] == 4){
-        return 7;
+        return MOVIMENTO_INVALIDO;
     }
 
         //encontro com pokemons
@@ -363,18 +372,18 @@ int andarW(ash *jogador, int matriz[12][10]){
                 //conseguiu pegar o pokemon P
                 jogador -> pokemons++;
                 jogador -> pokebolas--;
-                return 3;
+                return POKEMON_OBTIDO;
             }
             else
                 //não teve exito em pegar o pokemon
                 realocarPokemon(matriz,jogador);
             jogador -> pokebolas--;
-            return 6;
+            return FUGA_POKEMON;
         }else{
             //não tinha pokebolas , o pokemon fugiu
             matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
             realocarPokemon(matriz,jogador);
-            return 2;
+            return FUGA_POKEBOLA_INSU;
         }
     }
         //encontro com pokebolas
@@ -382,17 +391,17 @@ int andarW(ash *jogador, int matriz[12][10]){
         jogador -> posicao[0]-=1;
         jogador -> pokebolas++;
         matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
-        return 1;
+        return POKEMON_OBTIDO;
     }
 
     else if(matriz[jogador -> posicao[0] - 1][jogador -> posicao[1]] == 5){
         jogador -> posicao[0] -= 1;
         if(jogador -> pokemons > 3){
             //Início do comabte
-            return 5;
+            return ESTADIO_BATALHA;
         } else{
             //Não tem pokemons suficientes para inicio do combate
-            return 4;
+            return ESTADIO_POKEMON_INSU;
         }
     }
 }
@@ -403,12 +412,12 @@ int andarA(ash *jogador, int matriz[12][10]){
     if(matriz[jogador -> posicao[0]][jogador -> posicao[1]-1] == 0){
         jogador -> posicao[1]-=1;
         matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
-        return 0;
+        return NADA;
     }
 
         //movimento invalido
     else if(jogador -> posicao[1] - 1  < 0 || matriz[jogador -> posicao[0]][jogador -> posicao[1]- 1] == 4){
-        return 7;
+        return MOVIMENTO_INVALIDO;
     }
 
         //encontro com pokemons
@@ -420,18 +429,18 @@ int andarA(ash *jogador, int matriz[12][10]){
                 //conseguiu pegar o pokemon P
                 jogador -> pokemons++;
                 jogador -> pokebolas--;
-                return 3;
+                return POKEMON_OBTIDO;
             }
             else
                 //não teve exito em pegar o pokemon
                 realocarPokemon(matriz,jogador);
             jogador -> pokebolas--;
-            return 6;
+            return FUGA_POKEMON;
         }else{
             //não tinha pokebolas , o pokemon fugiu
             matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
             realocarPokemon(matriz,jogador);
-            return 2;
+            return FUGA_POKEBOLA_INSU;
         }
     }
         //encontro com pokebolas
@@ -439,17 +448,17 @@ int andarA(ash *jogador, int matriz[12][10]){
         jogador -> posicao[1]-=1;
         jogador -> pokebolas++;
         matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
-        return 1;
+        return POKEBOLA_OBTIDA;
     }
 
     else if(matriz[jogador -> posicao[0]][jogador -> posicao[1]- 1] == 5){
         jogador -> posicao[1] -= 1;
         if(jogador -> pokemons > 3){
             //Início do comabte
-            return 5;
+            return ESTADIO_BATALHA;
         } else{
             //Não tem pokemons suficientes para inicio do combate
-            return 4;
+            return ESTADIO_POKEMON_INSU;
         }
     }
 }
@@ -460,12 +469,12 @@ int andarD(ash *jogador, int matriz[12][10]){
     if(matriz[jogador -> posicao[0]][jogador -> posicao[1]+1] == 0){
         jogador -> posicao[1]+=1;
         matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
-        return 0;
+        return NADA;
     }
 
         //movimento invalido
     else if(jogador -> posicao[1] + 1  > 9 || matriz[jogador -> posicao[0]][jogador -> posicao[1]+ 1] == 4){
-        return 7;
+        return MOVIMENTO_INVALIDO;
     }
 
         //encontro com pokemons
@@ -477,18 +486,18 @@ int andarD(ash *jogador, int matriz[12][10]){
                 //conseguiu pegar o pokemon P
                 jogador -> pokemons++;
                 jogador -> pokebolas--;
-                return 3;
+                return POKEMON_OBTIDO;
             }
             else
                 //não teve exito em pegar o pokemon
                 realocarPokemon(matriz,jogador);
             jogador -> pokebolas--;
-            return 6;
+            return FUGA_POKEMON;
         }else{
             //não tinha pokebolas , o pokemon fugiu
             matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
             realocarPokemon(matriz,jogador);
-            return 2;
+            return FUGA_POKEBOLA_INSU;
         }
     }
         //encontro com pokebolas
@@ -496,17 +505,17 @@ int andarD(ash *jogador, int matriz[12][10]){
         jogador -> posicao[1]+=1;
         jogador -> pokebolas++;
         matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
-        return 1;
+        return POKEBOLA_OBTIDA;
     }
 
     else if(matriz[jogador -> posicao[0]][jogador -> posicao[1]+ 1] == 5){
         jogador -> posicao[1] += 1;
         if(jogador -> pokemons > 3){
             //Início do comabte
-            return 5;
+            return ESTADIO_BATALHA;
         } else{
             //Não tem pokemons suficientes para inicio do combate
-            return 4;
+            return ESTADIO_POKEMON_INSU;
         }
     }
 }
