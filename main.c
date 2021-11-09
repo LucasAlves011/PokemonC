@@ -20,11 +20,13 @@ typedef struct {
 }ash;
 
 // FUNÇÕES VÃO RETORNAR INT PARA REPRESENTAR AÇÕES
-void injetarPokemonsPokebolas(int x[3][55],int posi[12][10]);
-void andarW( ash *jogador, int matriz[12][10]);
-void andarA( ash *jogador, int matriz[12][10]);
+void realocarPokemon(int matriz[12][10],ash *jogador);
+void clear_screen();
+void injetarPokemonsPokebolas(int x[3][55],int mapa[12][10]);
+int andarW( ash *jogador, int matriz[12][10]);
+int andarA( ash *jogador, int matriz[12][10]);
 int andarS( ash *jogador, int matriz[12][10]);
-void andarD( ash *jogador, int matriz[12][10]);
+int andarD( ash *jogador, int matriz[12][10]);
 
 void imprimir(int para[12][10], ash jogador){
     int n = 0;
@@ -61,6 +63,8 @@ void imprimir(int para[12][10], ash jogador){
     }
     printf("\n");
 }
+int matrizEspacosDisponiveis[3][55]={0};
+int pokemonsForagidos = 0;
 int main() {
     //iniciando os status do jogador, teste ssh
     setlocale(LC_ALL,"Portuguese");
@@ -72,7 +76,7 @@ int main() {
     jogador.pokemons = 0;
 
     int mapaPosicional[12][10] = {0};
-    int matrizEspacosDisponiveis[3][55]={0};
+
     int iterador = 0;
 
     //iniciar os obstáculos e objetivos no mapa
@@ -145,34 +149,51 @@ int main() {
 
     //injetar pokebolas e pokemons no mapa
     injetarPokemonsPokebolas(matrizEspacosDisponiveis,mapaPosicional);
+    /*
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 55; ++j) {
+            printf("%d ",matrizEspacosDisponiveis[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n\n\n");
 
-
-//    imprimir(mapaPosicional,jogador);
-//    printf("\n%d %d\n", jogador.posicao[0],jogador.posicao[1] );
-//    andarS(&jogador,mapaPosicional);
-//    imprimir(mapaPosicional,jogador);
-//    andarS(&jogador,mapaPosicional);
-//    imprimir(mapaPosicional,jogador);
-//    andarS(&jogador,mapaPosicional);
     imprimir(mapaPosicional,jogador);
+    */
+    /*
+//    printf("\n%d %d\n", jogador.posicao[0],jogador.posicao[1] );
+    andarS(&jogador,mapaPosicional);
+    getchar();
+    clear_screen();
+
+    imprimir(mapaPosicional,jogador);
+    getchar();
+    clear_screen();
+    andarS(&jogador,mapaPosicional);
+    imprimir(mapaPosicional,jogador);
+    getchar();
+    clear_screen();
+    andarS(&jogador,mapaPosicional);
+    imprimir(mapaPosicional,jogador);
+    getchar();
     //    printf("\n%d %d\n", jogador.posicao[0],jogador.posicao[1] );
-
- /*
-  * TODO função que avisa os encontros do jogador com os objetos e objetivos
-  * retornar 0 para que nenhuma ação seja feita
-  * retornar 1 para achou uma pokebola
-  * retornar 2 para avisar que encontrou um pokemon porem não tinha pokebolas (o pokemon fugiu)
-  * retornar 3 avisar que foi capturado um pokemon
-  * retornar 4 avisar encontro com o estadio sem pokemons suficientes
-  * retornar 5 encontro com o estadio com pokemons suficientes e inicio da batalha
-  * 6 não conseguiu exito em pegar um pokemon
-  * 7 movimento invalido
-  */
-
+     */
+    /*
+     * TODO função que avisa os encontros do jogador com os objetos e objetivos
+     * retornar 0 para que nenhuma ação seja feita
+     * retornar 1 para achou uma pokebola
+     * retornar 2 para avisar que encontrou um pokemon porem não tinha pokebolas (o pokemon fugiu)
+     * retornar 3 avisar que foi capturado um pokemon
+     * retornar 4 avisar encontro com o estadio sem pokemons suficientes
+     * retornar 5 encontro com o estadio com pokemons suficientes e inicio da batalha
+     * 6 não conseguiu exito em pegar um pokemon
+     * 7 movimento invalido
+     */
 
     bool flow = true;
     char jogada;
     do{
+        imprimir(mapaPosicional,jogador);
         printf("Faça a sua jogada: w/a/s/d ");
         scanf("%c",&jogada);
         getchar();
@@ -180,28 +201,33 @@ int main() {
             case ('S'):
             case ('s'):
                 andarS(&jogador,mapaPosicional);
+                clear_screen();
                 break;
 
             case ('W'):
             case ('w'):
                 andarW(&jogador,mapaPosicional);
+                clear_screen();
                 break;
 
             case ('A'):
             case ('a'):
                 andarA(&jogador,mapaPosicional);
+                clear_screen();
                 break;
 
             case ('D'):
             case ('d'):
                 andarD(&jogador,mapaPosicional);
+                clear_screen();
                 break;
 
             default:
-                printf("Você não digitou uma jogada valida");
+                clear_screen();
+                printf("Você não digitou uma jogada válida\n");
                 break;
         }
-        flow = false;
+//        flow = false;
     }while (flow);
 
 
@@ -245,56 +271,267 @@ void injetarPokemonsPokebolas(int x[3][55],int mapa[12][10]){
     } while (y < 30);
 }
 
-
-
+/*
+* ----retornar 0 para que nenhuma ação seja feita
+* ---- retornar 1 para achou uma pokebola
+* ---- retornar 2 para avisar que encontrou um pokemon porem não tinha pokebolas (o pokemon fugiu)
+* ---- retornar 3 avisar que foi capturado um pokemon
+* ---- retornar 4 avisar encontro com o estadio sem pokemons suficientes
+* ---- retornar 5 encontro com o estadio com pokemons suficientes e inicio da batalha
+* ---- 6 não conseguiu exito em pegar um pokemon
+* -----7 movimento invalido
+*/
 int andarS(ash *jogador, int matriz[12][10]){
     srand(time(NULL));
-    if(jogador -> posicao[0] + 1  > 11 || matriz[jogador -> posicao[0] + 1][jogador -> posicao[1]] == 4){
+
+    //espaços navegaveis comuns
+    if(matriz[jogador -> posicao[0] + 1][jogador -> posicao[1]] == 0){
+        jogador -> posicao[0]+=1;
+//        matriz[jogador -> posicao[0] + 1][jogador -> posicao[1]] += 1;
+        matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
+        return 0;
+    }
+
         //movimento invalido
+    else if(jogador -> posicao[0] + 1  > 11 || matriz[jogador -> posicao[0] + 1][jogador -> posicao[1]] == 4){
         return 7;
     }
-    //encontro com pokemons
-    if(matriz[jogador -> posicao[0] + 1][jogador -> posicao[1]] == 2){
+
+        //encontro com pokemons
+    else if(matriz[jogador -> posicao[0] + 1][jogador -> posicao[1]] == 2){
         jogador -> posicao[0]+=1;
-        matriz[jogador -> posicao[0] + 1][jogador -> posicao[1]] += 1;
+        matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
         if(jogador -> pokebolas > 0){
             if(rand() % 100 < 80){
-                //conseguiu pegar o pokemon
+                //conseguiu pegar o pokemon P
                 jogador -> pokemons++;
                 jogador -> pokebolas--;
                 return 3;
             }
             else
                 //não teve exito em pegar o pokemon
-                return 6;
+                realocarPokemon(matriz,jogador);
+            jogador -> pokebolas--;
+            return 6;
         }else{
             //não tinha pokebolas , o pokemon fugiu
             matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
+            realocarPokemon(matriz,jogador);
             return 2;
         }
     }
-    //encontro com pokebolas
-    if(matriz[jogador -> posicao[0] + 1][jogador -> posicao[1]] == 3){
+        //encontro com pokebolas
+    else if(matriz[jogador -> posicao[0] + 1][jogador -> posicao[1]] == 3){
         jogador -> posicao[0]+=1;
         jogador -> pokebolas++;
-        matriz[jogador -> posicao[0] + 1][jogador -> posicao[1]] += 1;
-        return 3;
+        matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
+        return 1;
     }
+
+    else if(matriz[jogador -> posicao[0] + 1][jogador -> posicao[1]] == 5){
+        jogador -> posicao[0] += 1;
+        if(jogador -> pokemons > 3){
+            //Início do comabte
+            return 5;
+        } else{
+            //Não tem pokemons suficientes para inicio do combate
+            return 4;
+        }
+    }
+}
+int andarW(ash *jogador, int matriz[12][10]){
+    srand(time(NULL));
+
     //espaços navegaveis comuns
-    if(matriz[jogador -> posicao[0] + 1][jogador -> posicao[1]] == 0){
-        jogador -> posicao[0]+=1;
-        matriz[jogador -> posicao[0] + 1][jogador -> posicao[1]] += 1;
+    if(matriz[jogador -> posicao[0] - 1][jogador -> posicao[1]] == 0){
+        jogador -> posicao[0]-=1;
+        matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
+        return NADA;
+    }
+
+        //movimento invalido
+    else if(jogador -> posicao[0] - 1  < 0 || matriz[jogador -> posicao[0] - 1][jogador -> posicao[1]] == 4){
+        return 7;
+    }
+
+        //encontro com pokemons
+    else if(matriz[jogador -> posicao[0] - 1][jogador -> posicao[1]] == 2){
+        jogador -> posicao[0]-=1;
+        matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
+        if(jogador -> pokebolas > 0){
+            if(rand() % 100 < 80){
+                //conseguiu pegar o pokemon P
+                jogador -> pokemons++;
+                jogador -> pokebolas--;
+                return 3;
+            }
+            else
+                //não teve exito em pegar o pokemon
+                realocarPokemon(matriz,jogador);
+            jogador -> pokebolas--;
+            return 6;
+        }else{
+            //não tinha pokebolas , o pokemon fugiu
+            matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
+            realocarPokemon(matriz,jogador);
+            return 2;
+        }
+    }
+        //encontro com pokebolas
+    else if(matriz[jogador -> posicao[0] - 1][jogador -> posicao[1]] == 3){
+        jogador -> posicao[0]-=1;
+        jogador -> pokebolas++;
+        matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
+        return 1;
+    }
+
+    else if(matriz[jogador -> posicao[0] - 1][jogador -> posicao[1]] == 5){
+        jogador -> posicao[0] -= 1;
+        if(jogador -> pokemons > 3){
+            //Início do comabte
+            return 5;
+        } else{
+            //Não tem pokemons suficientes para inicio do combate
+            return 4;
+        }
+    }
+}
+int andarA(ash *jogador, int matriz[12][10]){
+    srand(time(NULL));
+
+    //espaços navegaveis comuns
+    if(matriz[jogador -> posicao[0]][jogador -> posicao[1]-1] == 0){
+        jogador -> posicao[1]-=1;
+        matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
         return 0;
     }
-}
-void andarW(ash *jogador, int matriz[12][10]){
 
-}
-void andarA(ash *jogador, int matriz[12][10]){
+        //movimento invalido
+    else if(jogador -> posicao[1] - 1  < 0 || matriz[jogador -> posicao[0]][jogador -> posicao[1]- 1] == 4){
+        return 7;
+    }
 
-}
-void andarD(ash *jogador, int matriz[12][10]){
+        //encontro com pokemons
+    else if(matriz[jogador -> posicao[0]][jogador -> posicao[1] - 1] == 2){
+        jogador -> posicao[1]-=1;
+        matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
+        if(jogador -> pokebolas > 0){
+            if(rand() % 100 < 80){
+                //conseguiu pegar o pokemon P
+                jogador -> pokemons++;
+                jogador -> pokebolas--;
+                return 3;
+            }
+            else
+                //não teve exito em pegar o pokemon
+                realocarPokemon(matriz,jogador);
+            jogador -> pokebolas--;
+            return 6;
+        }else{
+            //não tinha pokebolas , o pokemon fugiu
+            matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
+            realocarPokemon(matriz,jogador);
+            return 2;
+        }
+    }
+        //encontro com pokebolas
+    else if(matriz[jogador -> posicao[0]][jogador -> posicao[1] - 1] == 3){
+        jogador -> posicao[1]-=1;
+        jogador -> pokebolas++;
+        matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
+        return 1;
+    }
 
+    else if(matriz[jogador -> posicao[0]][jogador -> posicao[1]- 1] == 5){
+        jogador -> posicao[1] -= 1;
+        if(jogador -> pokemons > 3){
+            //Início do comabte
+            return 5;
+        } else{
+            //Não tem pokemons suficientes para inicio do combate
+            return 4;
+        }
+    }
+}
+int andarD(ash *jogador, int matriz[12][10]){
+    srand(time(NULL));
+
+    //espaços navegaveis comuns
+    if(matriz[jogador -> posicao[0]][jogador -> posicao[1]+1] == 0){
+        jogador -> posicao[1]+=1;
+        matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
+        return 0;
+    }
+
+        //movimento invalido
+    else if(jogador -> posicao[1] + 1  > 9 || matriz[jogador -> posicao[0]][jogador -> posicao[1]+ 1] == 4){
+        return 7;
+    }
+
+        //encontro com pokemons
+    else if(matriz[jogador -> posicao[0]][jogador -> posicao[1] + 1] == 2){
+        jogador -> posicao[1]+=1;
+        matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
+        if(jogador -> pokebolas > 0){
+            if(rand() % 100 < 80){
+                //conseguiu pegar o pokemon P
+                jogador -> pokemons++;
+                jogador -> pokebolas--;
+                return 3;
+            }
+            else
+                //não teve exito em pegar o pokemon
+                realocarPokemon(matriz,jogador);
+            jogador -> pokebolas--;
+            return 6;
+        }else{
+            //não tinha pokebolas , o pokemon fugiu
+            matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
+            realocarPokemon(matriz,jogador);
+            return 2;
+        }
+    }
+        //encontro com pokebolas
+    else if(matriz[jogador -> posicao[0]][jogador -> posicao[1] + 1] == 3){
+        jogador -> posicao[1]+=1;
+        jogador -> pokebolas++;
+        matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
+        return 1;
+    }
+
+    else if(matriz[jogador -> posicao[0]][jogador -> posicao[1]+ 1] == 5){
+        jogador -> posicao[1] += 1;
+        if(jogador -> pokemons > 3){
+            //Início do comabte
+            return 5;
+        } else{
+            //Não tem pokemons suficientes para inicio do combate
+            return 4;
+        }
+    }
 }
 
-//TODO fazer uma função que realoque um pokemon que fugiu para outra célula
+
+void realocarPokemon(int matriz[12][10],ash *jogador) {
+    //Essa funçao so vai realocar no mapa em ate 3 fugas, acima disso os pokemons desaparecem do mapa
+    if(pokemonsForagidos < 3){
+        srand(time(NULL));
+        int x;
+        do {
+            x = rand() % 56;
+            if (matrizEspacosDisponiveis[2][x] == 0) {
+                matrizEspacosDisponiveis[2][x] = -1;
+            }
+        } while (matrizEspacosDisponiveis[2][x] != -1);
+        matriz[matrizEspacosDisponiveis[0][x]][matrizEspacosDisponiveis[1][x]] = 2;
+    }
+}
+
+void clear_screen(){
+#ifdef __linux__
+    system("clear");
+#elif _WIN32
+    system("cls");
+#else
+#endif
+}
