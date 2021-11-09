@@ -1,3 +1,7 @@
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "hicpp-multiway-paths-covered"
+#pragma ide diagnostic ignored "cert-msc50-cpp"
+#pragma ide diagnostic ignored "cert-msc51-cpp"
 //
 // Created by lucas on 09/11/2021.
 //
@@ -16,17 +20,17 @@ void clear_screen(){
 int andarS(ash *jogador, int matriz[12][10]){
     srand(time(NULL));
 
+    //movimento invalido
+     if(jogador -> posicao[0] + 1  > 11 || matriz[jogador -> posicao[0] + 1][jogador -> posicao[1]] == 4){
+        return MOVIMENTO_INVALIDO;
+    }
+
     //espaços navegaveis comuns
-    if(matriz[jogador -> posicao[0] + 1][jogador -> posicao[1]] == 0){
+    else if(matriz[jogador -> posicao[0] + 1][jogador -> posicao[1]] == 0){
         jogador -> posicao[0]+=1;
 //        matriz[jogador -> posicao[0] + 1][jogador -> posicao[1]] += 1;
         matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
         return NADA;
-    }
-
-        //movimento invalido
-    else if(jogador -> posicao[0] + 1  > 11 || matriz[jogador -> posicao[0] + 1][jogador -> posicao[1]] == 4){
-        return MOVIMENTO_INVALIDO;
     }
 
         //encontro com pokemons
@@ -74,16 +78,16 @@ int andarS(ash *jogador, int matriz[12][10]){
 int andarW(ash *jogador, int matriz[12][10]){
     srand(time(NULL));
 
+    //movimento invalido
+    if(jogador -> posicao[0] - 1  < 0 || matriz[jogador -> posicao[0] - 1][jogador -> posicao[1]] == 4){
+        return MOVIMENTO_INVALIDO;
+    }
+
     //espaços navegaveis comuns
-    if(matriz[jogador -> posicao[0] - 1][jogador -> posicao[1]] == 0){
+    else if(matriz[jogador -> posicao[0] - 1][jogador -> posicao[1]] == 0){
         jogador -> posicao[0]-=1;
         matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
         return NADA;
-    }
-
-        //movimento invalido
-    else if(jogador -> posicao[0] - 1  < 0 || matriz[jogador -> posicao[0] - 1][jogador -> posicao[1]] == 4){
-        return MOVIMENTO_INVALIDO;
     }
 
         //encontro com pokemons
@@ -123,7 +127,7 @@ int andarW(ash *jogador, int matriz[12][10]){
             //Início do comabte
             return ESTADIO_BATALHA;
         } else{
-            //Não tem pokemons suficientes para inicio do combate
+            //Não tem pokemons suficientes para início do combate
             return ESTADIO_POKEMON_INSU;
         }
     }
@@ -131,16 +135,16 @@ int andarW(ash *jogador, int matriz[12][10]){
 int andarA(ash *jogador, int matriz[12][10]){
     srand(time(NULL));
 
+    //movimento invalido
+     if(jogador -> posicao[1] - 1  < 0 || matriz[jogador -> posicao[0]][jogador -> posicao[1]- 1] == 4){
+        return MOVIMENTO_INVALIDO;
+    }
+
     //espaços navegaveis comuns
-    if(matriz[jogador -> posicao[0]][jogador -> posicao[1]-1] == 0){
+    else if(matriz[jogador -> posicao[0]][jogador -> posicao[1]-1] == 0){
         jogador -> posicao[1]-=1;
         matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
         return NADA;
-    }
-
-        //movimento invalido
-    else if(jogador -> posicao[1] - 1  < 0 || matriz[jogador -> posicao[0]][jogador -> posicao[1]- 1] == 4){
-        return MOVIMENTO_INVALIDO;
     }
 
         //encontro com pokemons
@@ -188,16 +192,16 @@ int andarA(ash *jogador, int matriz[12][10]){
 int andarD(ash *jogador, int matriz[12][10]){
     srand(time(NULL));
 
+    //movimento invalido
+    if(jogador -> posicao[1] + 1  > 9 || matriz[jogador -> posicao[0]][jogador -> posicao[1]+ 1] == 4){
+        return MOVIMENTO_INVALIDO;
+    }
+
     //espaços navegaveis comuns
-    if(matriz[jogador -> posicao[0]][jogador -> posicao[1]+1] == 0){
+    else if(matriz[jogador -> posicao[0]][jogador -> posicao[1]+1] == 0){
         jogador -> posicao[1]+=1;
         matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
         return NADA;
-    }
-
-        //movimento invalido
-    else if(jogador -> posicao[1] + 1  > 9 || matriz[jogador -> posicao[0]][jogador -> posicao[1]+ 1] == 4){
-        return MOVIMENTO_INVALIDO;
     }
 
         //encontro com pokemons
@@ -243,6 +247,4 @@ int andarD(ash *jogador, int matriz[12][10]){
     }
 }
 
-
-
-
+#pragma clang diagnostic pop

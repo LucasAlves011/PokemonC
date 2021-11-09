@@ -17,13 +17,12 @@
 
 void injetarPokemonsPokebolas(int x[3][55],int mapa[12][10]);
 
-
 void imprimir(int para[12][10], ash jogador){
     int n = 0;
     bool entrar = true;
     bool condicao = true;
-
     for (int i = 0; i < 12; ++i) {
+        purple();
         if(i == 0){
             if(entrar){
                 printf("   ");
@@ -43,10 +42,34 @@ void imprimir(int para[12][10], ash jogador){
                 printf(" ");
                 condicao = false;
             }
+            reset();
             if(i == jogador.posicao[0] && jogador.posicao[1] == j ){
+                red();
                 printf("1 ");
-            }else
+                reset();
+            }else{
+                switch (para[i][j]) {
+                    case 0:
+                        break;
+                    case 2:
+                        yellow();
+                        break;
+                    case 3:
+                        blue();
+                        break;
+                    case 4:
+                        black();
+                        printf("X ");
+                        break;
+                    case 5:
+                        green();
+                        break;
+                }
+                if(para[i][j] != 4){
                 printf("%d ",para[i][j]);
+                }
+            }
+            reset();
         }
         printf("\n");
         condicao = true;
@@ -59,9 +82,9 @@ int pokemonsForagidos = 0;
 
 
 int main() {
-    //iniciando os status do jogador, teste ssh
+    //iniciando os status do jogador
     setlocale(LC_ALL,"Portuguese");
-
+    apresentar();
     ash jogador;
     jogador.posicao[0] = 0;
     jogador.posicao[1] = 0;
@@ -69,9 +92,9 @@ int main() {
     jogador.pokemons = 0;
 
     int mapaPosicional[12][10] = {0};
-
     int iterador = 0;
 
+    clear_screen();
     //iniciar os obstáculos e objetivos no mapa
     for (int i = 0; i < 12; ++i) {
         for (int j = 0; j < 10; ++j) {
@@ -81,11 +104,9 @@ int main() {
                         mapaPosicional[i][j] = 0;
                     }
                     else if( i == 5 || i == 6 || (i > 7 && i <= 11))
-                        if( i == 11) {
+                        if (i == 11) {
                             mapaPosicional[i][j] = 5;
-                        } else {
-                            mapaPosicional[i][j] = 4;
-                        }
+                        } else { mapaPosicional[i][j] = 4; }
                     break;
                 case 1:
                     if((i > 0 && i < 4) || i == 5 || i == 6 || i == 8 || i == 10)
@@ -153,25 +174,7 @@ int main() {
 
     imprimir(mapaPosicional,jogador);
     */
-    /*
-//    printf("\n%d %d\n", jogador.posicao[0],jogador.posicao[1] );
-    andarS(&jogador,mapaPosicional);
-    getchar();
-    clear_screen();
-
-    imprimir(mapaPosicional,jogador);
-    getchar();
-    clear_screen();
-    andarS(&jogador,mapaPosicional);
-    imprimir(mapaPosicional,jogador);
-    getchar();
-    clear_screen();
-    andarS(&jogador,mapaPosicional);
-    imprimir(mapaPosicional,jogador);
-    getchar();
-    //    printf("\n%d %d\n", jogador.posicao[0],jogador.posicao[1] );
-     */
-    /*
+     /*
      * TODO função que avisa os encontros do jogador com os objetos e objetivos
      * retornar 0 para que nenhuma ação seja feita
      * retornar 1 para achou uma pokebola
@@ -184,35 +187,43 @@ int main() {
      */
 
     bool flow = true;
+    int controlador = 0;
     char jogada;
     do{
+        printf("\n\n");
         imprimir(mapaPosicional,jogador);
-        printf("Faça a sua jogada: w/a/s/d ");
+        printf("Faça a sua jogada: w/a/s/d \n");
+        printf("Você atualmente tem %d "BBLU "pokebolas"RST" e %d"BYEL" pokemons"RST". ",jogador.pokebolas,jogador . pokemons);
         scanf("%c",&jogada);
         getchar();
+
         switch (jogada) {
             case ('S'):
             case ('s'):
-                andarS(&jogador,mapaPosicional);
+                controlador = andarS(&jogador,mapaPosicional);
                 clear_screen();
+                feedbackMovimento(controlador);
                 break;
 
             case ('W'):
             case ('w'):
-                andarW(&jogador,mapaPosicional);
+                controlador=andarW(&jogador,mapaPosicional);
                 clear_screen();
+                feedbackMovimento(controlador);
                 break;
 
             case ('A'):
             case ('a'):
-                andarA(&jogador,mapaPosicional);
+                controlador = andarA(&jogador,mapaPosicional);
                 clear_screen();
+                feedbackMovimento(controlador);
                 break;
 
             case ('D'):
             case ('d'):
-                andarD(&jogador,mapaPosicional);
+                controlador = andarD(&jogador,mapaPosicional);
                 clear_screen();
+                feedbackMovimento(controlador);
                 break;
 
             default:
@@ -237,7 +248,7 @@ int main() {
 void injetarPokemonsPokebolas(int x[3][55],int mapa[12][10]){
     /*  3 vai representar as pokebolas
      *  2 vai representar os pokemons
-     *  Vão ser inicializadas 15 pokebolas e 15 pokemons consumindo 30 dos 56 espaços disponíveis
+     *  Vão ser inicializadas 10 pokebolas e 10 pokemons consumindo 30 dos 56 espaços disponíveis
      */
     srand(time(NULL));
     int y = 0;
@@ -250,7 +261,7 @@ void injetarPokemonsPokebolas(int x[3][55],int mapa[12][10]){
             mapa[x[0][temp]][x[1][temp]] = 2;
             y++;
         }
-    } while (y < 15);
+    } while (y < 10);
 
     //pokebolas
     do{
@@ -261,7 +272,7 @@ void injetarPokemonsPokebolas(int x[3][55],int mapa[12][10]){
             mapa[x[0][temp]][x[1][temp]] = 3;
             y++;
         }
-    } while (y < 30);
+    } while (y < 20);
 }
 
 /*
@@ -286,6 +297,7 @@ void realocarPokemon(int matriz[12][10],ash *jogador) {
             }
         } while (matrizEspacosDisponiveis[2][x] != -1);
         matriz[matrizEspacosDisponiveis[0][x]][matrizEspacosDisponiveis[1][x]] = 2;
+        pokemonsForagidos++;
     }
 }
 
