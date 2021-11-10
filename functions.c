@@ -5,7 +5,6 @@
 //
 // Created by lucas on 09/11/2021.
 //
-#include <stdlib.h>
 #include "functions.h"
 
 void clear_screen(){
@@ -19,6 +18,7 @@ void clear_screen(){
 
 int andarS(ash *jogador, int matriz[12][10]){
     srand(time(NULL));
+    setlocale(LC_ALL,"Portuguese");
 
     //movimento invalido
      if(jogador -> posicao[0] + 1  > 11 || matriz[jogador -> posicao[0] + 1][jogador -> posicao[1]] == 4){
@@ -118,7 +118,7 @@ int andarW(ash *jogador, int matriz[12][10]){
         jogador -> posicao[0]-=1;
         jogador -> pokebolas++;
         matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
-        return POKEMON_OBTIDO;
+        return POKEBOLA_OBTIDA;
     }
 
     else if(matriz[jogador -> posicao[0] - 1][jogador -> posicao[1]] == 5){

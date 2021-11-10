@@ -10,7 +10,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include <locale.h>
-
+#include <unistd.h>
+#include <string.h>
 
 typedef struct {
     int posicao[2];
@@ -38,7 +39,9 @@ typedef struct {
 #define BWHT "\e[1;37m"
 #define RST "\e[0m"
 
+void imprimirDelay(char msg[],int delay);
 void apresentar();
+void apresentarControles();
 void clear_screen();
 void feedbackMovimento(int retorno);
 int andarW( ash *jogador, int matriz[12][10]);

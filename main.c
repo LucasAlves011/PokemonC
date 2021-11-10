@@ -84,7 +84,10 @@ int pokemonsForagidos = 0;
 int main() {
     //iniciando os status do jogador
     setlocale(LC_ALL,"Portuguese");
+
     apresentar();
+    apresentarControles();
+
     ash jogador;
     jogador.posicao[0] = 0;
     jogador.posicao[1] = 0;
@@ -175,7 +178,6 @@ int main() {
     imprimir(mapaPosicional,jogador);
     */
      /*
-     * TODO função que avisa os encontros do jogador com os objetos e objetivos
      * retornar 0 para que nenhuma ação seja feita
      * retornar 1 para achou uma pokebola
      * retornar 2 para avisar que encontrou um pokemon porem não tinha pokebolas (o pokemon fugiu)
@@ -193,7 +195,7 @@ int main() {
         printf("\n\n");
         imprimir(mapaPosicional,jogador);
         printf("Faça a sua jogada: w/a/s/d \n");
-        printf("Você atualmente tem %d "BBLU "pokebolas"RST" e %d"BYEL" pokemons"RST". ",jogador.pokebolas,jogador . pokemons);
+        printf("Você atualmente tem %d "BBLU "pokébolas"RST" e %d"BYEL" pokémons"RST". ",jogador.pokebolas,jogador . pokemons);
         scanf("%c",&jogada);
         getchar();
 
