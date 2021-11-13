@@ -44,10 +44,10 @@ void apresentar();
 void apresentarControles();
 void clear_screen();
 void feedbackMovimento(int retorno);
-int andarW( ash *jogador, int matriz[12][10]);
-int andarA( ash *jogador, int matriz[12][10]);
-int andarS( ash *jogador, int matriz[12][10]);
-int andarD( ash *jogador, int matriz[12][10]);
+int andarW( ash *jogador, int matriz[12][10],bool *flow);
+int andarA( ash *jogador, int matriz[12][10],bool *flow);
+int andarS( ash *jogador, int matriz[12][10],bool *flow);
+int andarD( ash *jogador, int matriz[12][10],bool *flow);
 
 //cores
 void red();

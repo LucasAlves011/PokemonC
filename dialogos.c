@@ -171,7 +171,9 @@ void feedbackMovimento(int retorno){
             break;
 
         case ESTADIO_BATALHA:
+            clear_screen();
             printf("Você entrou no estádio, boa sorte.");
+            getchar();
             break;
 
         case FUGA_POKEMON:

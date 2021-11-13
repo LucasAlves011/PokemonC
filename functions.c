@@ -16,7 +16,7 @@ void clear_screen(){
 #endif
 }
 
-int andarS(ash *jogador, int matriz[12][10]){
+int andarS(ash *jogador, int matriz[12][10],bool *flow){
     srand(time(NULL));
     setlocale(LC_ALL,"Portuguese");
 
@@ -66,8 +66,9 @@ int andarS(ash *jogador, int matriz[12][10]){
 
     else if(matriz[jogador -> posicao[0] + 1][jogador -> posicao[1]] == 5){
         jogador -> posicao[0] += 1;
-        if(jogador -> pokemons > 3){
+        if(jogador -> pokemons >= 3){
             //Início do comabte
+            *flow = false;
             return ESTADIO_BATALHA;
         } else{
             //Não tem pokemons suficientes para inicio do combate
@@ -75,7 +76,7 @@ int andarS(ash *jogador, int matriz[12][10]){
         }
     }
 }
-int andarW(ash *jogador, int matriz[12][10]){
+int andarW(ash *jogador, int matriz[12][10],bool *flow){
     srand(time(NULL));
 
     //movimento invalido
@@ -123,8 +124,9 @@ int andarW(ash *jogador, int matriz[12][10]){
 
     else if(matriz[jogador -> posicao[0] - 1][jogador -> posicao[1]] == 5){
         jogador -> posicao[0] -= 1;
-        if(jogador -> pokemons > 3){
+        if(jogador -> pokemons >= 3){
             //Início do comabte
+            *flow = false;
             return ESTADIO_BATALHA;
         } else{
             //Não tem pokemons suficientes para início do combate
@@ -132,7 +134,7 @@ int andarW(ash *jogador, int matriz[12][10]){
         }
     }
 }
-int andarA(ash *jogador, int matriz[12][10]){
+int andarA(ash *jogador, int matriz[12][10],bool *flow){
     srand(time(NULL));
 
     //movimento invalido
@@ -180,8 +182,9 @@ int andarA(ash *jogador, int matriz[12][10]){
 
     else if(matriz[jogador -> posicao[0]][jogador -> posicao[1]- 1] == 5){
         jogador -> posicao[1] -= 1;
-        if(jogador -> pokemons > 3){
+        if(jogador -> pokemons >= 3){
             //Início do comabte
+            *flow = false;
             return ESTADIO_BATALHA;
         } else{
             //Não tem pokemons suficientes para inicio do combate
@@ -189,7 +192,7 @@ int andarA(ash *jogador, int matriz[12][10]){
         }
     }
 }
-int andarD(ash *jogador, int matriz[12][10]){
+int andarD(ash *jogador, int matriz[12][10],bool *flow){
     srand(time(NULL));
 
     //movimento invalido
@@ -237,8 +240,9 @@ int andarD(ash *jogador, int matriz[12][10]){
 
     else if(matriz[jogador -> posicao[0]][jogador -> posicao[1]+ 1] == 5){
         jogador -> posicao[1] += 1;
-        if(jogador -> pokemons > 3){
-            //Início do comabte
+        if(jogador -> pokemons >= 3){
+            //Início do combata
+            *flow = false;
             return ESTADIO_BATALHA;
         } else{
             //Não tem pokemons suficientes para inicio do combate

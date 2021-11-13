@@ -12,9 +12,6 @@
  */
 
 
-// FUNÇÕES VÃO RETORNAR INT PARA REPRESENTAR AÇÕES
-
-
 void injetarPokemonsPokebolas(int x[3][55],int mapa[12][10]);
 
 void imprimir(int para[12][10], ash jogador){
@@ -79,7 +76,6 @@ void imprimir(int para[12][10], ash jogador){
 
 int matrizEspacosDisponiveis[3][55]={0};
 int pokemonsForagidos = 0;
-
 
 int main() {
     //iniciando os status do jogador
@@ -202,28 +198,28 @@ int main() {
         switch (jogada) {
             case ('S'):
             case ('s'):
-                controlador = andarS(&jogador,mapaPosicional);
+                controlador = andarS(&jogador,mapaPosicional,&flow);
                 clear_screen();
                 feedbackMovimento(controlador);
                 break;
 
             case ('W'):
             case ('w'):
-                controlador=andarW(&jogador,mapaPosicional);
+                controlador=andarW(&jogador,mapaPosicional,&flow);
                 clear_screen();
                 feedbackMovimento(controlador);
                 break;
 
             case ('A'):
             case ('a'):
-                controlador = andarA(&jogador,mapaPosicional);
+                controlador = andarA(&jogador,mapaPosicional,&flow);
                 clear_screen();
                 feedbackMovimento(controlador);
                 break;
 
             case ('D'):
             case ('d'):
-                controlador = andarD(&jogador,mapaPosicional);
+                controlador = andarD(&jogador,mapaPosicional,&flow);
                 clear_screen();
                 feedbackMovimento(controlador);
                 break;
@@ -233,9 +229,9 @@ int main() {
                 printf("Você não digitou uma jogada válida\n");
                 break;
         }
-//        flow = false;
     }while (flow);
 
+    printf("funcionando bem");
 
     return 0;
 }
