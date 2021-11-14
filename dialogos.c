@@ -179,7 +179,7 @@ void feedbackMovimento(int retorno, ash * jogador){
 
 }
 
-void apresentar(){
+void ato1(){
     clear_screen();
     printf("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNdhNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n"
            "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNdy+ohNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n"
@@ -221,7 +221,7 @@ void apresentar(){
     imprimirDelay(msg4,0);
     getchar();
 }
-void apresentarControles(){
+void tutorial(){
     typedef struct {
         int x;
         int y;

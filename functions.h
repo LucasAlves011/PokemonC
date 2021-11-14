@@ -49,8 +49,8 @@ typedef struct {
 void listarPokemons(ash *jogador);
 void adicionarPokemon(char nome[],ash *jogador,char cor[]);
 void imprimirDelay(char msg[],int delay);
-void apresentar();
-void apresentarControles();
+void ato1();
+void tutorial();
 void clear_screen();
 void feedbackMovimento(int retorno, ash * jogador);
 int andarW( ash *jogador, int matriz[12][10],bool *flow);

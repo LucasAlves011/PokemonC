@@ -81,8 +81,8 @@ int main() {
     //iniciando os status do jogador
     setlocale(LC_ALL,"Portuguese");
 
-//    apresentar();
-//    apresentarControles();
+    ato1();
+    tutorial();
 
     ash jogador;
     jogador.posicao[0] = 0;
