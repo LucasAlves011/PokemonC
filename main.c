@@ -81,14 +81,15 @@ int main() {
     //iniciando os status do jogador
     setlocale(LC_ALL,"Portuguese");
 
-    apresentar();
-    apresentarControles();
+//    apresentar();
+//    apresentarControles();
 
     ash jogador;
     jogador.posicao[0] = 0;
     jogador.posicao[1] = 0;
     jogador.pokebolas = 0;
     jogador.pokemons = 0;
+    jogador.inicio = NULL;
 
     int mapaPosicional[12][10] = {0};
     int iterador = 0;
@@ -191,7 +192,7 @@ int main() {
         printf("\n\n");
         imprimir(mapaPosicional,jogador);
         printf("Faça a sua jogada: w/a/s/d \n");
-        printf("Você atualmente tem %d "BBLU "pokébolas"RST" e %d"BYEL" pokémons"RST". ",jogador.pokebolas,jogador . pokemons);
+        printf("Você atualmente tem %d "BBLU "pokébolas"RST" e %d"BYEL" pokémons"RST". ",jogador.pokebolas,jogador.pokemons);
         scanf("%c",&jogada);
         getchar();
 
@@ -200,28 +201,28 @@ int main() {
             case ('s'):
                 controlador = andarS(&jogador,mapaPosicional,&flow);
                 clear_screen();
-                feedbackMovimento(controlador);
+                feedbackMovimento(controlador,&jogador);
                 break;
 
             case ('W'):
             case ('w'):
                 controlador=andarW(&jogador,mapaPosicional,&flow);
                 clear_screen();
-                feedbackMovimento(controlador);
+                feedbackMovimento(controlador,&jogador);
                 break;
 
             case ('A'):
             case ('a'):
                 controlador = andarA(&jogador,mapaPosicional,&flow);
                 clear_screen();
-                feedbackMovimento(controlador);
+                feedbackMovimento(controlador,&jogador);
                 break;
 
             case ('D'):
             case ('d'):
                 controlador = andarD(&jogador,mapaPosicional,&flow);
                 clear_screen();
-                feedbackMovimento(controlador);
+                feedbackMovimento(controlador,&jogador);
                 break;
 
             default:
@@ -232,6 +233,7 @@ int main() {
     }while (flow);
 
     printf("funcionando bem");
+    listarPokemons(&jogador);
 
     return 0;
 }

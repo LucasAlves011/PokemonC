@@ -251,4 +251,21 @@ int andarD(ash *jogador, int matriz[12][10],bool *flow){
     }
 }
 
+void adicionarPokemon(char novoNome[] , ash *jogador , char cor[]){
+    nome_pokemon *novo = (nome_pokemon *) malloc(sizeof(nome_pokemon));
+    nome_pokemon *temp = (nome_pokemon *) malloc(sizeof(nome_pokemon));
+    strcpy(novo->nome,novoNome);
+    strcpy(novo->cor,cor);
+    novo -> proximo = NULL;
+    if(jogador->inicio == NULL) {
+        jogador->inicio = novo;
+    }
+    else{
+        temp = jogador->inicio;
+        while(temp->proximo != NULL)
+            temp = temp-> proximo;
+        temp -> proximo = novo;
+    }
+}
+
 #pragma clang diagnostic pop

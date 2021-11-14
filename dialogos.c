@@ -6,6 +6,12 @@
 // Created by lucas on 09/11/2021.
 //
 #include "functions.h"
+//verde , roxo , azul ,amarelo , vermelho
+char pokemonsAll[25][15]={"Bulbasaur","Chikorita","Bellsprout","Weepinbell","Oddish",
+                          "Ekans","Alakazam","Gastly","Rattata","Zubat",
+                          "Tentacool","Poliwag","Snorlax","Squirtle","Psyduck",
+                          "Sandshrew","Cubone","Pikachu","Diglett","Electabuzz",
+                          "Cyndaquil","Vulpix","Charmander","Pidgey","Ponyta"};
 
 void red(){
     printf("\033[1;31m");
@@ -41,84 +47,43 @@ void black(){
     printf("\033[0;30m");
 }
 
-void feedbackMovimento(int retorno){
+void feedbackMovimento(int retorno, ash * jogador){
     srand(time(NULL));
+    int number = rand() % 25;
+    char cor[10] ;
 
     switch (retorno) {
         case NADA:
             return;
 
-            // Eu poderia ter feito uma função mais inteligente para os pokémons, mas decidi deixar desse jeito, pq
-            // me diverti pesquisando nome de pokémons e colocando eles aqui manualmente.
         case POKEMON_OBTIDO:
-            switch (rand() % 21) {
-                case 0:
-                    printf("Você encontrou um" BGRN" Bulbasaur"RST".");
-                    break;
-                case 1:
-                    printf("Você capturou um "BMAG"Zubat"RST".");
-                    break;
-                case 2:
-                    printf("Você capturou um "BBLU"Snorlax"RST".");
-                    break;
-                case 3:
-                    printf("Você capturou um "BYEL"Pikachu"RST".");
-                    break;
-                case 4:
-                    printf("Você capturou um "BYEL"Diglett"RST".");
-                    break;
-                case 5:
-                    printf("Você capturou um "BRED"Vulpix"RST".");
-                    break;
-                case 6:
-                    printf("Você capturou um "BRED"Pidgey"RST".");
-                    break;
-                case 7:
-                    printf("Você capturou um "BMAG"Ekans"RST".");
-                    break;
-                case 8:
-                    printf("Você capturou um fucking "BMAG"Alakazam"RST". Na teoria eu te daria a vitória agora.");
-                    break;
-                case 9:
-                    printf("Você capturou uma "BRED"Ponyta"RST".");
-                    break;
-                case 10:
-                    printf("Você capturou um "BBLU"Magnemite"RST".");
-                    break;
-                case 11:
-                    printf("Você capturou um "BBLU "Squirtle" RST".");
-                    break;
-                case 12:
-                    printf("Você capturou um "BRED"Charmander" RST".");
-                    break;
-                case 13:
-                    printf("Você capturou um "BMAG"Rattata" RST".");
-                    break;
-                case 14:
-                    printf("Você encontrou um "BYEL"Psyduck" RST".");
-                    break;
-                case 15:
-                    printf("Você encontrou um "BBLU"Poliwag" RST".");
-                    break;
-                case 16:
-                    printf("Você capturou um "BBLU "Tentacool"RST".");
-                    break;
-                case 17:
-                    printf("Você capturou uma "BYEL "Bellsprout"RST);
-                    break;
-                case 18:
-                    printf("Você capturou uma "BGRN"Chikorita" RST".");
-                    break;
-                case 19:
-                    printf("Você capturou um "BRED"Cyndaquil" RST".");
-                    break;
-                case 20:
-                    printf("Você capturou um "BMAG"Gastly" RST".");
-                    break;
+            if(number < 5) {
+                printf("Você capturou um "BGRN"%s"RST".", pokemonsAll[number]);
+                strcpy(cor,BGRN);
             }
-            green();
-            printf(" +1 pokemon");
-            reset();
+            else if(number >= 5 && number < 10) {
+                printf("Você capturou um "BMAG"%s"RST".", pokemonsAll[number]);
+                strcpy(cor,BMAG);
+            }
+            else if(number >= 10 && number < 15) {
+                printf("Você capturou um "BBLU"%s"RST".", pokemonsAll[number]);
+                strcpy(cor,BBLU);
+            }
+            else if(number >= 15 && number < 20) {
+                printf("Você capturou um "BYEL"%s"RST".", pokemonsAll[number]);
+                strcpy(cor,BYEL);
+            }
+            else if(number >= 20 && number < 25) {
+                printf("Você capturou um "BRED"%s"RST".", pokemonsAll[number]);
+                strcpy(cor,BRED);
+            }
+            /**
+             * Eu entendo que a chamada dessa função deveria estar junto as funções de movimento,
+            mas como essa função não tem muito impacto na lógica do game não deve ter muito problemas.
+             */
+            adicionarPokemon(pokemonsAll[number],jogador,cor);
+
+            printf(BGRN" +1 pokemon"RST);
             break;
 
         case POKEBOLA_OBTIDA:
@@ -134,9 +99,7 @@ void feedbackMovimento(int retorno){
                     printf("Pokébola encontrada !!");
                     break;
             }
-            green();
-            printf(" +1 pokebola");
-            reset();
+            printf(BGRN" +1 pokebola"RST);
             break;
 
         case FUGA_POKEBOLA_INSU:
@@ -191,10 +154,9 @@ void feedbackMovimento(int retorno){
                     printf("O pokémon foi mais esperto, ele fugiu");
                     break;
             }
-            red();
-            printf(" -1 pokebola");
-            reset();
+            printf(BRED" -1 pokebola"RST);
             break;
+
         case MOVIMENTO_INVALIDO:
             red();
             switch (rand() % 4) {
@@ -241,8 +203,8 @@ void apresentar(){
     char msg1[]="Nesse jogo " BRED "você(1)" RST " é um treinador pokémon iniciante e seu objetivo é conquistar a glória vencendo o" BGRN " ginásio pokémon(5)..." RST;
     char msg2[]="\nMas para isso você tem que conseguir alguns " BYEL "pokémons(2)" RST " caçando-os pelo mapa...";
     char msg3[]="\nPara pegar um " BYEL "pokémon(2) " RST"é necessário possuir pelo menos uma " BBLU "pokébola(3)" RST " que também estão espalhadas pelo mapa,\nse "BRED"você(1) "
-    RST"se deparar com um" BYEL " pokémon(2) "RST"sem ter nenhuma"BBLU" pokébola(3)" RST", "
-    "ele vai fugir, podendo desaparecer ou não do mapa...";
+                RST"se deparar com um" BYEL " pokémon(2) "RST"sem ter nenhuma"BBLU" pokébola(3)" RST", "
+                "ele vai fugir, podendo desaparecer ou não do mapa...";
     char msg4[] = "\nTer uma "BBLU "pokébola(3)" RST " e achar um" BYEL " pokémon(2)" RST " não significa que irá capturá-lo,\n" BYEL "pokémons(2)" RST " são espertos e não vão ser capturados facilmente.\n\n"
                   "Para tentar desafiar Brock no" BGRN " ginásio pokémon(5)" RST" você precisa de pelo menos 3 pokémons."
                   "\n\nAperte enter para continuar...";
@@ -381,6 +343,19 @@ void imprimirDelay(char msg[],int delay){
         fflush(stdout);
         usleep(delay);
     }
+}
+
+void listarPokemons(ash *jogador){
+    struct nome_pokemon * temp = jogador->inicio;
+    int n = 1;
+    printf("\n\nLista de pokemons obtidos: \n");
+    while(temp->proximo != NULL){
+        printf("%d - %s%s\n",n++,temp->cor,temp->nome);
+        temp = temp->proximo;
+        reset();
+    }
+    printf("%d - %s%s\n",n,temp->cor,temp->nome);
+    reset();
 }
 
 #pragma clang diagnostic pop

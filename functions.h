@@ -13,10 +13,17 @@
 #include <unistd.h>
 #include <string.h>
 
+typedef struct nome_pokemon{
+    char nome[25];
+    char cor[10];
+    struct nome_pokemon * proximo;
+}nome_pokemon;
+
 typedef struct {
     int posicao[2];
     int pokemons;
     int pokebolas;
+    struct nome_pokemon * inicio;
 }ash;
 
 #define NADA 0
@@ -39,11 +46,13 @@ typedef struct {
 #define BWHT "\e[1;37m"
 #define RST "\e[0m"
 
+void listarPokemons(ash *jogador);
+void adicionarPokemon(char nome[],ash *jogador,char cor[]);
 void imprimirDelay(char msg[],int delay);
 void apresentar();
 void apresentarControles();
 void clear_screen();
-void feedbackMovimento(int retorno);
+void feedbackMovimento(int retorno, ash * jogador);
 int andarW( ash *jogador, int matriz[12][10],bool *flow);
 int andarA( ash *jogador, int matriz[12][10],bool *flow);
 int andarS( ash *jogador, int matriz[12][10],bool *flow);
