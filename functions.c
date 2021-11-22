@@ -259,13 +259,50 @@ void adicionarPokemon(char novoNome[] , ash *jogador , char cor[]){
     novo -> proximo = NULL;
     if(jogador->inicio == NULL) {
         jogador->inicio = novo;
+        jogador->inicio->anterior = NULL;
     }
     else{
         temp = jogador->inicio;
         while(temp->proximo != NULL)
-            temp = temp-> proximo;
+            temp = temp->proximo;
+        novo -> anterior = temp;
         temp -> proximo = novo;
     }
+    jogador->tamanho++;
 }
+
+nome_pokemon selecionarPokemon(ash *jogador){
+    int index;
+    bool first = true;
+    struct nome_pokemon * temp = jogador->inicio;
+    do{
+        first == true ? first = false : printf(BRED"Digite um número VÁLIDO a um pokemon !"RST);
+        listarPokemons(jogador);
+        printf("\nDigite o index do pokemon que você vai querer que componha seu time contra Brock: ");
+        scanf("%d", &index);
+        clear_screen();
+    } while (index < 0 || index > jogador -> tamanho);
+
+    for (int i = 1; i < index ; ++i) {
+        temp = temp->proximo;
+    }
+
+    if(temp-> anterior  == NULL) {
+        temp-> proximo -> anterior = NULL;
+        jogador -> inicio = temp -> proximo;
+        temp -> proximo = NULL;
+    }
+    else if(temp -> proximo == NULL) {
+        temp->anterior->proximo = NULL;
+        temp -> anterior = NULL;
+    }
+    else {
+        temp->anterior->proximo = temp->proximo;
+        temp->proximo->anterior = temp->anterior;
+    }
+    jogador -> tamanho--;
+    return *temp;
+}
+
 
 #pragma clang diagnostic pop

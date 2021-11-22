@@ -17,9 +17,12 @@ typedef struct nome_pokemon{
     char nome[25];
     char cor[10];
     struct nome_pokemon * proximo;
+    struct nome_pokemon * anterior;
+
 }nome_pokemon;
 
 typedef struct {
+    int tamanho;
     int posicao[2];
     int pokemons;
     int pokebolas;
@@ -46,6 +49,8 @@ typedef struct {
 #define BWHT "\e[1;37m"
 #define RST "\e[0m"
 
+nome_pokemon selecionarPokemon(ash *jogador);
+void testarLista(ash *jogador);
 void listarPokemons(ash *jogador);
 void adicionarPokemon(char nome[],ash *jogador,char cor[]);
 void imprimirDelay(char msg[],int delay);

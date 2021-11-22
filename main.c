@@ -81,13 +81,14 @@ int main() {
     //iniciando os status do jogador
     setlocale(LC_ALL,"Portuguese");
 
-    ato1();
-    tutorial();
+//    ato1();
+//    tutorial();
 
     ash jogador;
+    jogador.tamanho = 0;
     jogador.posicao[0] = 0;
     jogador.posicao[1] = 0;
-    jogador.pokebolas = 0;
+    jogador.pokebolas = 10;
     jogador.pokemons = 0;
     jogador.inicio = NULL;
 
@@ -163,27 +164,6 @@ int main() {
 
     //injetar pokebolas e pokemons no mapa
     injetarPokemonsPokebolas(matrizEspacosDisponiveis,mapaPosicional);
-    /*
-    for (int i = 0; i < 3; ++i) {
-        for (int j = 0; j < 55; ++j) {
-            printf("%d ",matrizEspacosDisponiveis[i][j]);
-        }
-        printf("\n");
-    }
-    printf("\n\n\n");
-
-    imprimir(mapaPosicional,jogador);
-    */
-     /*
-     * retornar 0 para que nenhuma ação seja feita
-     * retornar 1 para achou uma pokebola
-     * retornar 2 para avisar que encontrou um pokemon porem não tinha pokebolas (o pokemon fugiu)
-     * retornar 3 avisar que foi capturado um pokemon
-     * retornar 4 avisar encontro com o estadio sem pokemons suficientes
-     * retornar 5 encontro com o estadio com pokemons suficientes e inicio da batalha
-     * 6 não conseguiu exito em pegar um pokemon
-     * 7 movimento invalido
-     */
 
     bool flow = true;
     int controlador = 0;
@@ -232,8 +212,23 @@ int main() {
         }
     }while (flow);
 
-    printf("funcionando bem");
-    listarPokemons(&jogador);
+    clear_screen();
+    nome_pokemon selecionados[3] ;
+
+    selecionados[0] = selecionarPokemon(&jogador);
+    clear_screen();
+    selecionados[1] = selecionarPokemon(&jogador);
+    clear_screen();
+    selecionados[2] = selecionarPokemon(&jogador);
+
+    getchar();
+
+    printf("Lista de selecionados: ");
+    for (int i = 0; i < 3; ++i) {
+        printf("\n%s%s",selecionados[i].cor,selecionados[i].nome);
+        reset();
+    }
+
 
     return 0;
 }

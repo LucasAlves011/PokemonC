@@ -242,7 +242,7 @@ void tutorial(){
     jogador.x =0;
     jogador.y =0;
 
-    char jogada;
+    char jogada = ' ';
     clear_screen();
     char msg1[]="Para mover seu personagem pelo mapa você deve digitar a direção que pretende ir escolhendo entre as opções "
                 BYEL"w/a/s/d"RST" e depois pressionar a tecla enter para confirmar a jogada.\n\nVamos testar os controles em um mapa de testes...";
@@ -356,6 +356,18 @@ void listarPokemons(ash *jogador){
     }
     printf("%d - %s%s\n",n,temp->cor,temp->nome);
     reset();
+}
+
+// função criada somente para debug
+void testarLista(ash *jogador){
+    struct nome_pokemon * temp = jogador->inicio;
+    int n = 1;
+    printf("\n\nLista de pokemons obtidos: \n");
+    while(temp->proximo != NULL){
+        printf("\n\n Anterior:%s\nAtual:%s\nProximo:%s",temp->anterior->nome,temp->nome,temp->proximo->nome);
+        temp = temp->proximo;
+    }
+    printf("\n\n Anterior:%s\nAtual:%s\nProximo:%s",temp->anterior->nome,temp->nome,temp->proximo->nome);
 }
 
 #pragma clang diagnostic pop
