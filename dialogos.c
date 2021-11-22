@@ -13,6 +13,8 @@ char pokemonsAll[25][15]={"Bulbasaur","Chikorita","Bellsprout","Weepinbell","Odd
                           "Sandshrew","Cubone","Pikachu","Diglett","Electabuzz",
                           "Cyndaquil","Vulpix","Charmander","Pidgey","Ponyta"};
 
+int bufferPokemon;
+
 void red(){
     printf("\033[1;31m");
 }
@@ -49,7 +51,12 @@ void black(){
 
 void feedbackMovimento(int retorno, ash * jogador){
     srand(time(NULL));
-    int number = rand() % 25;
+    int number;
+
+    do{
+        number = rand() % 25;
+    }while(number == bufferPokemon);
+
     char cor[10] ;
 
     switch (retorno) {
@@ -82,6 +89,7 @@ void feedbackMovimento(int retorno, ash * jogador){
             mas como essa função não tem muito impacto na lógica do game não deve ter muito problemas.
              */
             adicionarPokemon(pokemonsAll[number],jogador,cor);
+            bufferPokemon = number;
 
             printf(BGRN" +1 pokemon"RST);
             break;
@@ -348,7 +356,7 @@ void imprimirDelay(char msg[],int delay){
 void listarPokemons(ash *jogador){
     struct nome_pokemon * temp = jogador->inicio;
     int n = 1;
-    printf("\n\nLista de pokemons obtidos: \n");
+    printf("Lista de pokemons obtidos: \n");
     while(temp->proximo != NULL){
         printf("%d - %s%s\n",n++,temp->cor,temp->nome);
         temp = temp->proximo;

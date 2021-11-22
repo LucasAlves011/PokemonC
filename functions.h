@@ -49,7 +49,9 @@ typedef struct {
 #define BWHT "\e[1;37m"
 #define RST "\e[0m"
 
-nome_pokemon selecionarPokemon(ash *jogador);
+void injetarPokemonsPokebolas(int x[3][55], int mapa[12][10]);
+void imprimir(int para[12][10], ash jogador);
+nome_pokemon selecionarPokemon(ash *jogador, nome_pokemon listaSelecionados[3]);
 void testarLista(ash *jogador);
 void listarPokemons(ash *jogador);
 void adicionarPokemon(char nome[],ash *jogador,char cor[]);

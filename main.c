@@ -1,4 +1,3 @@
-
 #include "functions.h"
 
 /**
@@ -11,76 +10,12 @@
  * 5 estádio pokemon
  */
 
-
-void injetarPokemonsPokebolas(int x[3][55],int mapa[12][10]);
-
-void imprimir(int para[12][10], ash jogador){
-    int n = 0;
-    bool entrar = true;
-    bool condicao = true;
-    for (int i = 0; i < 12; ++i) {
-        purple();
-        if(i == 0){
-            if(entrar){
-                printf("   ");
-                entrar = false;
-            }
-            for (int j = 0; j < 10; ++j) {
-                printf("%d ",j);
-            }
-            printf("\n");
-        }
-
-        for (int j = 0; j < 10; ++j) {
-            if(j == 0){
-                printf("%d ",n++);
-            }
-            if(i <= 9 && condicao == true) {
-                printf(" ");
-                condicao = false;
-            }
-            reset();
-            if(i == jogador.posicao[0] && jogador.posicao[1] == j ){
-                red();
-                printf("1 ");
-                reset();
-            }else{
-                switch (para[i][j]) {
-                    case 0:
-                        break;
-                    case 2:
-                        yellow();
-                        break;
-                    case 3:
-                        blue();
-                        break;
-                    case 4:
-                        black();
-                        printf("X ");
-                        break;
-                    case 5:
-                        green();
-                        break;
-                }
-                if(para[i][j] != 4){
-                printf("%d ",para[i][j]);
-                }
-            }
-            reset();
-        }
-        printf("\n");
-        condicao = true;
-    }
-    printf("\n");
-}
-
 int matrizEspacosDisponiveis[3][55]={0};
 int pokemonsForagidos = 0;
 
 int main() {
     //iniciando os status do jogador
     setlocale(LC_ALL,"Portuguese");
-
 //    ato1();
 //    tutorial();
 
@@ -163,7 +98,7 @@ int main() {
     }
 
     //injetar pokebolas e pokemons no mapa
-    injetarPokemonsPokebolas(matrizEspacosDisponiveis,mapaPosicional);
+    injetarPokemonsPokebolas(matrizEspacosDisponiveis, mapaPosicional);
 
     bool flow = true;
     int controlador = 0;
@@ -213,37 +148,32 @@ int main() {
     }while (flow);
 
     clear_screen();
-    nome_pokemon selecionados[3] ;
+    nome_pokemon selecionados[3];
 
-    selecionados[0] = selecionarPokemon(&jogador);
+    selecionados[0] = selecionarPokemon(&jogador,selecionados);
     clear_screen();
-    selecionados[1] = selecionarPokemon(&jogador);
+    selecionados[1] = selecionarPokemon(&jogador,selecionados);
     clear_screen();
-    selecionados[2] = selecionarPokemon(&jogador);
+    selecionados[2] = selecionarPokemon(&jogador,selecionados);
 
     getchar();
 
-    printf("Lista de selecionados: ");
-    for (int i = 0; i < 3; ++i) {
-        printf("\n%s%s",selecionados[i].cor,selecionados[i].nome);
-        reset();
-    }
+    printf("Você selecionou: ");
+    for (int i = 0; i < 3; ++i)
+        printf("\n%d - %s%s"RST,(i+1),selecionados[i].cor,selecionados[i].nome);
+
+    // TODO apresentar time do brock
+    // TODO inic
+
 
 
     return 0;
 }
-/**
- * são 56 espaços navegáveis porem [0,0] e [11,0] nao poderam recebar pokemons ou pokebolas
- * 0 espaços navegáveis
- * 2 espaços navegáveis com pokemons
- * 3 espaços navegáveis com pokebolas
- * 4 espaços não navegáveis
- * 5 estádio pokemon
- */
-void injetarPokemonsPokebolas(int x[3][55],int mapa[12][10]){
+
+void injetarPokemonsPokebolas(int x[3][55], int mapa[12][10]){
     /*  3 vai representar as pokebolas
      *  2 vai representar os pokemons
-     *  Vão ser inicializadas 10 pokebolas e 10 pokemons consumindo 30 dos 56 espaços disponíveis
+     *  Vão ser inicializadas 10 pokebolas e 10 pokemons consumindo 20 dos 56 espaços disponíveis
      */
     srand(time(NULL));
     int y = 0;
@@ -270,16 +200,6 @@ void injetarPokemonsPokebolas(int x[3][55],int mapa[12][10]){
     } while (y < 20);
 }
 
-/*
-* ----retornar 0 para que nenhuma ação seja feita
-* ---- retornar 1 para achou uma pokebola
-* ---- retornar 2 para avisar que encontrou um pokemon porem não tinha pokebolas (o pokemon fugiu)
-* ---- retornar 3 avisar que foi capturado um pokemon
-* ---- retornar 4 avisar encontro com o estadio sem pokemons suficientes
-* ---- retornar 5 encontro com o estadio com pokemons suficientes e inicio da batalha
-* ---- 6 não conseguiu exito em pegar um pokemon
-* -----7 movimento invalido
-*/
 void realocarPokemon(int matriz[12][10],ash *jogador) {
     //Essa funçao so vai realocar no mapa em ate 3 fugas, acima disso os pokemons desaparecem do mapa
     if(pokemonsForagidos < 3){
@@ -296,3 +216,62 @@ void realocarPokemon(int matriz[12][10],ash *jogador) {
     }
 }
 
+void imprimir(int para[12][10], ash jogador){
+    int n = 0;
+    bool entrar = true;
+    bool condicao = true;
+    for (int i = 0; i < 12; ++i) {
+        purple();
+        if(i == 0){
+            if(entrar){
+                printf("   ");
+                entrar = false;
+            }
+            for (int j = 0; j < 10; ++j) {
+                printf("%d ",j);
+            }
+            printf("\n");
+        }
+
+        for (int j = 0; j < 10; ++j) {
+            if(j == 0){
+                printf("%d ",n++);
+            }
+            if(i <= 9 && condicao == true) {
+                printf(" ");
+                condicao = false;
+            }
+            reset();
+            if(i == jogador.posicao[0] && jogador.posicao[1] == j ){
+                red();
+                printf("1 ");
+                reset();
+            }else{
+                switch (para[i][j]) {
+                    case 0:
+                        break;
+                    case 2:
+                        yellow();
+                        break;
+                    case 3:
+                        blue();
+                        break;
+                    case 4:
+                        black();
+                        printf("X ");
+                        break;
+                    case 5:
+                        green();
+                        break;
+                }
+                if(para[i][j] != 4){
+                    printf("%d ",para[i][j]);
+                }
+            }
+            reset();
+        }
+        printf("\n");
+        condicao = true;
+    }
+    printf("\n");
+}

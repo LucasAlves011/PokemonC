@@ -16,6 +16,17 @@ void clear_screen(){
 #endif
 }
 
+/** As funções de movimento W/A/S/D retornam os seguintes números:
+* ----retornar 0 para que nenhum feedback seja dado
+* ---- retornar 1 para achou uma pokebola
+* ---- retornar 2 para avisar que encontrou um pokemon porem não tinha pokebolas (o pokemon fugiu)
+* ---- retornar 3 avisar que foi capturado um pokemon
+* ---- retornar 4 avisar encontro com o estadio sem pokemons suficientes
+* ---- retornar 5 encontro com o estadio com pokemons suficientes e inicio da batalha
+* ---- 6 não conseguiu exito em pegar um pokemon
+* -----7 movimento invalido
+*/
+
 int andarS(ash *jogador, int matriz[12][10],bool *flow){
     srand(time(NULL));
     setlocale(LC_ALL,"Portuguese");
@@ -271,13 +282,18 @@ void adicionarPokemon(char novoNome[] , ash *jogador , char cor[]){
     jogador->tamanho++;
 }
 
-nome_pokemon selecionarPokemon(ash *jogador){
+nome_pokemon selecionarPokemon(ash *jogador, nome_pokemon listaSelecionados[3]){
     int index;
     bool first = true;
     struct nome_pokemon * temp = jogador->inicio;
     do{
         first == true ? first = false : printf(BRED"Digite um número VÁLIDO a um pokemon !"RST);
         listarPokemons(jogador);
+        printf("\nSeu time: \n");
+        for (int i = 0; i < 3; ++i)
+            printf("%d - %s%s\t"RST,(i+1),listaSelecionados[i].cor,listaSelecionados[i].nome);
+        printf("\n");
+
         printf("\nDigite o index do pokemon que você vai querer que componha seu time contra Brock: ");
         scanf("%d", &index);
         clear_screen();
