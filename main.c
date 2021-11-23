@@ -16,9 +16,9 @@ int pokemonsForagidos = 0;
 int main() {
     //iniciando os status do jogador
     setlocale(LC_ALL,"Portuguese");
+//    getchar();
 //    ato1();
 //    tutorial();
-
     ash jogador;
     jogador.tamanho = 0;
     jogador.posicao[0] = 0;
@@ -29,7 +29,6 @@ int main() {
 
     int mapaPosicional[12][10] = {0};
     int iterador = 0;
-
     clear_screen();
     //iniciar os obstáculos e objetivos no mapa
     for (int i = 0; i < 12; ++i) {
@@ -156,15 +155,21 @@ int main() {
     clear_screen();
     selecionados[2] = selecionarPokemon(&jogador,selecionados);
 
+
     getchar();
 
-    printf("Você selecionou: ");
+    printf("Seu time: ");
     for (int i = 0; i < 3; ++i)
-        printf("\n%d - %s%s"RST,(i+1),selecionados[i].cor,selecionados[i].nome);
+        printf("%d - %s%s\t"RST,(i+1),selecionados[i].cor,selecionados[i].nome);
 
-    // TODO apresentar time do brock
-    // TODO inic
+    imprimirDelay("\n\nTime do Brock é formado por: Croagunk, Geodude e Onix.",0);
 
+    nome_pokemon *listaBrock = iniciarBrock();
+    iniciarAsh(selecionados);
+
+    turno(selecionados,listaBrock);
+    turno(selecionados,listaBrock);
+    while(selecionados[0] > 0 &&)
 
 
     return 0;

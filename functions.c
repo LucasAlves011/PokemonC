@@ -291,6 +291,7 @@ nome_pokemon selecionarPokemon(ash *jogador, nome_pokemon listaSelecionados[3]){
         listarPokemons(jogador);
         printf("\nSeu time: \n");
         for (int i = 0; i < 3; ++i)
+            //TODO As vezes ele imprime lixo aqui, concertar futuramente
             printf("%d - %s%s\t"RST,(i+1),listaSelecionados[i].cor,listaSelecionados[i].nome);
         printf("\n");
 
@@ -303,7 +304,10 @@ nome_pokemon selecionarPokemon(ash *jogador, nome_pokemon listaSelecionados[3]){
         temp = temp->proximo;
     }
 
-    if(temp-> anterior  == NULL) {
+    if(temp-> anterior  == NULL && temp-> proximo  == NULL ) {
+        //poderia colocar um return *temp aqui mas por boas práticas vou deixa-lo somento no final.
+    }
+    else if(temp-> anterior  == NULL) {
         temp-> proximo -> anterior = NULL;
         jogador -> inicio = temp -> proximo;
         temp -> proximo = NULL;

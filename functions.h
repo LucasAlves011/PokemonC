@@ -15,10 +15,10 @@
 
 typedef struct nome_pokemon{
     char nome[25];
+    int hp;
     char cor[10];
     struct nome_pokemon * proximo;
     struct nome_pokemon * anterior;
-
 }nome_pokemon;
 
 typedef struct {
@@ -49,6 +49,10 @@ typedef struct {
 #define BWHT "\e[1;37m"
 #define RST "\e[0m"
 
+void turno(nome_pokemon ashPoke[3], nome_pokemon *brockPoke);
+void iniciarAsh(nome_pokemon lista[3]);
+nome_pokemon * iniciarBrock();
+void mostrarHP(nome_pokemon *a,nome_pokemon *b,int feedback);
 void injetarPokemonsPokebolas(int x[3][55], int mapa[12][10]);
 void imprimir(int para[12][10], ash jogador);
 nome_pokemon selecionarPokemon(ash *jogador, nome_pokemon listaSelecionados[3]);
