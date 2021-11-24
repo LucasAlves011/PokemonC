@@ -15,7 +15,7 @@ void comecarBatalha(ash *jogador){
  *
  */
 }
-void turno(nome_pokemon ashPoke[3], nome_pokemon *brockPoke){
+void turno(nome_pokemon ashPoke[3], nome_pokemon *brockPoke,int * ashDerrotados, int * brockDerrotados){
     int dadoJogador = rand() % 100;
     int dadoBrock = rand() % 100;
     int diferenca;
@@ -89,10 +89,12 @@ void turno(nome_pokemon ashPoke[3], nome_pokemon *brockPoke){
     if(ashPokeSelecionado->hp > 0){
         printf("\nVocê saiu vencedor nessa rodada, o seu %s%s"RST" foi curado em "BGRN"+100 HP"RST" como bônus para a próxima batalha",ashPokeSelecionado->cor,ashPokeSelecionado->nome);
         ashPokeSelecionado->hp += 100;
+        *brockDerrotados += 1;
     }else{
         printf("\nVocê foi o "BRED"perdedor"RST" dessa rodada, o seu próximo pokemon entrara na batalha em breve. O pokemon de "
                                              "Brock recebeu "BGRN"+100 HP"RST".");
-        temp->hp +=50;
+        temp->hp += 100;
+        *ashDerrotados += 1;
     }
     getchar();
     clear_screen();

@@ -155,7 +155,6 @@ int main() {
     clear_screen();
     selecionados[2] = selecionarPokemon(&jogador,selecionados);
 
-
     getchar();
 
     printf("Seu time: ");
@@ -167,10 +166,20 @@ int main() {
     nome_pokemon *listaBrock = iniciarBrock();
     iniciarAsh(selecionados);
 
-    turno(selecionados,listaBrock);
-    turno(selecionados,listaBrock);
-    while(selecionados[0] > 0 &&)
+    int ashDerrotados = 0;
+    int brockDerrotados = 0;
 
+    while(brockDerrotados != 3 && ashDerrotados != 3 ){
+        turno(selecionados,listaBrock,&ashDerrotados,&brockDerrotados);
+    }
+
+    if(brockDerrotados == 0){
+        //TODO jogador ganhou
+    }else{
+        //TODO jogador perdeu
+    }
+
+    //TODO CREDITOS
 
     return 0;
 }
