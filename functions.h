@@ -53,6 +53,7 @@ typedef struct {
 
 void turno(nome_pokemon ashPoke[3], nome_pokemon *brockPoke,int * ashDerrotados, int * brockDerrotados, int batalhas);
 void iniciarAsh(nome_pokemon lista[3]);
+void creditos();
 nome_pokemon * iniciarBrock();
 void mostrarHP(nome_pokemon *a,nome_pokemon *b,int feedback);
 void injetarPokemonsPokebolas(int x[3][55], int mapa[12][10]);

@@ -16,6 +16,7 @@ int pokemonsForagidos = 0;
 int main() {
     //iniciando os status do jogador
     setlocale(LC_ALL,"Portuguese");
+    getchar();
 //    getchar();
 //    ato1();
 //    tutorial();
@@ -181,7 +182,7 @@ int main() {
         //TODO jogador perdeu
     }
 
-    //TODO CREDITOS
+    creditos();
 
     return 0;
 }

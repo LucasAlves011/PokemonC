@@ -4,17 +4,6 @@
 #include "functions.h"
 enum feedBackGinasio {MenosCinquentaBrock = 1, MenosCemBrock = 2, MenosCinquentaAsh = 3, MenosCemAsh = 4};
 
-
-
-void comecarBatalha(ash *jogador){
-/**
- * ROLA UM DADO de 1 a 10 PRA VER QUEM COMEÇA ATACANDO
- *  Quem ganhar começa a atacando e é rolado dois dados, se o ataque ganhar ele dá um de dano no openenente (cada openente)
- *  se a defesa ganhar o ataque leva 1/2 de dano e o turno vira
- *
- *
- */
-}
 void turno(nome_pokemon ashPoke[3], nome_pokemon *brockPoke,int * ashDerrotados, int * brockDerrotados, int batalhas){
     int dadoJogador = rand() % 100;
     int dadoBrock = rand() % 100;
