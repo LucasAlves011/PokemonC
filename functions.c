@@ -1,7 +1,3 @@
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "hicpp-multiway-paths-covered"
-#pragma ide diagnostic ignored "cert-msc50-cpp"
-#pragma ide diagnostic ignored "cert-msc51-cpp"
 //
 // Created by lucas on 09/11/2021.
 //
@@ -49,7 +45,7 @@ int andarS(ash *jogador, int matriz[12][10],bool *flow){
         jogador -> posicao[0]+=1;
         matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
         if(jogador -> pokebolas > 0){
-            if(rand() % 100 < 80){
+            if(rand() % 100 < CHANCE){
                 //conseguiu pegar o pokemon P
                 jogador -> pokemons++;
                 jogador -> pokebolas--;
@@ -107,7 +103,7 @@ int andarW(ash *jogador, int matriz[12][10],bool *flow){
         jogador -> posicao[0]-=1;
         matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
         if(jogador -> pokebolas > 0){
-            if(rand() % 100 < 80){
+            if(rand() % 100 < CHANCE){
                 //conseguiu pegar o pokemon P
                 jogador -> pokemons++;
                 jogador -> pokebolas--;
@@ -165,7 +161,7 @@ int andarA(ash *jogador, int matriz[12][10],bool *flow){
         jogador -> posicao[1]-=1;
         matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
         if(jogador -> pokebolas > 0){
-            if(rand() % 100 < 80){
+            if(rand() % 100 < CHANCE){
                 //conseguiu pegar o pokemon P
                 jogador -> pokemons++;
                 jogador -> pokebolas--;
@@ -223,7 +219,7 @@ int andarD(ash *jogador, int matriz[12][10],bool *flow){
         jogador -> posicao[1]+=1;
         matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
         if(jogador -> pokebolas > 0){
-            if(rand() % 100 < 80){
+            if(rand() % 100 < CHANCE){
                 //conseguiu pegar o pokemon P
                 jogador -> pokemons++;
                 jogador -> pokebolas--;
@@ -260,6 +256,19 @@ int andarD(ash *jogador, int matriz[12][10],bool *flow){
             return ESTADIO_POKEMON_INSU;
         }
     }
+}
+
+void listarPokemons(ash *jogador){
+    struct nome_pokemon * temp = jogador->inicio;
+    int n = 1;
+    printf("Lista de pokemons obtidos: \n");
+    while(temp->proximo != NULL){
+        printf("%d - %s%s\n",n++,temp->cor,temp->nome);
+        temp = temp->proximo;
+        reset();
+    }
+    printf("%d - %s%s\n",n,temp->cor,temp->nome);
+    reset();
 }
 
 void adicionarPokemon(char novoNome[] , ash *jogador , char cor[]){
@@ -324,5 +333,3 @@ nome_pokemon selecionarPokemon(ash *jogador, nome_pokemon listaSelecionados[3]){
     return *temp;
 }
 
-
-#pragma clang diagnostic pop

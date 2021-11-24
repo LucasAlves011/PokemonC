@@ -1,7 +1,3 @@
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "hicpp-multiway-paths-covered"
-#pragma ide diagnostic ignored "cert-msc51-cpp"
-#pragma ide diagnostic ignored "cert-msc50-cpp"
 //
 // Created by lucas on 09/11/2021.
 //
@@ -353,19 +349,6 @@ void imprimirDelay(char msg[],int delay){
     }
 }
 
-void listarPokemons(ash *jogador){
-    struct nome_pokemon * temp = jogador->inicio;
-    int n = 1;
-    printf("Lista de pokemons obtidos: \n");
-    while(temp->proximo != NULL){
-        printf("%d - %s%s\n",n++,temp->cor,temp->nome);
-        temp = temp->proximo;
-        reset();
-    }
-    printf("%d - %s%s\n",n,temp->cor,temp->nome);
-    reset();
-}
-
 // função criada somente para debug
 void testarLista(ash *jogador){
     struct nome_pokemon * temp = jogador->inicio;
@@ -379,11 +362,35 @@ void testarLista(ash *jogador){
 }
 
 void jogadorGanhou(){
+    imprimirDelay("Parabéns treinador, você derrotou Brock nessa batalha. E como recompensa...\n\n",0);
 
+    imprimirDelay("                .-/++oss+-             \n"
+                  "        .:/+++osso+///:s.-/oo/.         \n"
+                  "       oho-...-:::::::/+....``/++/`     \n"
+                  "      yhs/+:..-:::::::s-....`    .+s+   \n"
+                  "    `hysss:/+.::::::-.+.....`   `:::h.  \n"
+                  "   .dysssss--++++//:--://-..` -:-  .+s  \n"
+                  "  -dysssss+.-+//:::   ``.://::`    `-d` \n"
+                  " /dsssssss--+.::::`  ``````.+       .s/ \n"
+                  "odsssssss::/`::/:`  ``````../.      `-d \n"
+                  "ydyyyyyhyso`::::.`  ````...  /       .y-\n"
+                  "`dysssssssy/:::.`  ````...`  +---.`  `/y\n"
+                  " -mssssssssh/:.`` ````...`  :-```.---:od\n"
+                  "  +dssssssssy.``  ```...`  /.````````/y`\n"
+                  "   yyssssssyh+/-```....``-+` ```````+s  \n"
+                  "   `dysssyyo/::/++++////-`-/` `````s+   \n"
+                  "    -msyy+/::::::::s....   `:- ``.y:    \n"
+                  "     ods/::::::::::s...      .:.-h.     \n"
+                  "      `-+oso//:::::o.`      `-/ys`      \n"
+                  "           ./osso/:o..-/++++/-`         \n"
+                  "                -+os++:.                \n\n\n",3500);
+
+    imprimirDelay("você conseguiu a sua primeira insignia. A "BYEL"Insignia da Pedra"RST" é a primeira insigna na jornada"
+                        " de um treinador para se tornar um grande mestre pokemon.",0);
 }
 
-void jogadorPerde(){
-
+void jogadorPerdeu(){
+    imprimirDelay("Infelizmente você não conseguiu ganhar a batalha contra o Brock.",0);
 }
 
 void creditos(){
@@ -437,5 +444,3 @@ void creditos(){
                   "                                                                           \n"
                   "                                                                           ",2000);
 }
-
-#pragma clang diagnostic pop

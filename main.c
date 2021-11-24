@@ -16,15 +16,15 @@ int pokemonsForagidos = 0;
 int main() {
     //iniciando os status do jogador
     setlocale(LC_ALL,"Portuguese");
-    getchar();
-//    getchar();
-//    ato1();
-//    tutorial();
+
+    ato1();
+    tutorial();
+
     ash jogador;
     jogador.tamanho = 0;
     jogador.posicao[0] = 0;
     jogador.posicao[1] = 0;
-    jogador.pokebolas = 10;
+    jogador.pokebolas = 0;
     jogador.pokemons = 0;
     jogador.inicio = NULL;
 
@@ -171,15 +171,16 @@ int main() {
     int brockDerrotados = 0;
     int rodadas = 1;
 
+    printf("\n\nBrock arremessou sua pokebola e seu Croagnunk surgiu, agora é sua vez treinador... a batalha está preste a começar\n");
     while(brockDerrotados != 3 && ashDerrotados != 3 ){
         turno(selecionados,listaBrock,&ashDerrotados,&brockDerrotados,rodadas);
         rodadas++;
     }
 
     if(brockDerrotados == 0){
-        //TODO jogador ganhou
+        jogadorGanhou();
     }else{
-        //TODO jogador perdeu
+        jogadorPerdeu();
     }
 
     creditos();
@@ -190,7 +191,7 @@ int main() {
 void injetarPokemonsPokebolas(int x[3][55], int mapa[12][10]){
     /*  3 vai representar as pokebolas
      *  2 vai representar os pokemons
-     *  Vão ser inicializadas 10 pokebolas e 10 pokemons consumindo 20 dos 56 espaços disponíveis
+     *  Vão ser inicializadas 13 pokebolas e 8 pokemons consumindo 20 dos 56 espaços disponíveis
      */
     srand(time(NULL));
     int y = 0;
@@ -203,7 +204,9 @@ void injetarPokemonsPokebolas(int x[3][55], int mapa[12][10]){
             mapa[x[0][temp]][x[1][temp]] = 2;
             y++;
         }
-    } while (y < 10);
+    } while (y < POKEMONS);
+
+    y =0;
 
     //pokebolas
     do{
@@ -214,7 +217,7 @@ void injetarPokemonsPokebolas(int x[3][55], int mapa[12][10]){
             mapa[x[0][temp]][x[1][temp]] = 3;
             y++;
         }
-    } while (y < 20);
+    } while (y < POKEBOLAS);
 }
 
 void realocarPokemon(int matriz[12][10],ash *jogador) {

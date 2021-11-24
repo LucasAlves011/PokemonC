@@ -13,7 +13,9 @@
 #include <unistd.h>
 #include <string.h>
 
-
+#define CHANCE 60
+#define POKEBOLAS 13
+#define POKEMONS 7
 
 typedef struct nome_pokemon{
     char nome[25];
@@ -65,6 +67,8 @@ void adicionarPokemon(char nome[],ash *jogador,char cor[]);
 void imprimirDelay(char msg[],int delay);
 void ato1();
 void tutorial();
+void jogadorGanhou();
+void jogadorPerdeu();
 void clear_screen();
 void feedbackMovimento(int retorno, ash * jogador);
 int andarW( ash *jogador, int matriz[12][10],bool *flow);

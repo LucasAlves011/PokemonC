@@ -74,7 +74,7 @@ void turno(nome_pokemon ashPoke[3], nome_pokemon *brockPoke,int * ashDerrotados,
         }
 
         mostrarHP(ashPokeSelecionado,temp,feedBack);
-//        getchar();
+        getchar();
         //fim do turno, troca do lado de ataque
         jogadorAtk = !jogadorAtk;
 
