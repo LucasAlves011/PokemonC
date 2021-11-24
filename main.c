@@ -168,9 +168,11 @@ int main() {
 
     int ashDerrotados = 0;
     int brockDerrotados = 0;
+    int rodadas = 1;
 
     while(brockDerrotados != 3 && ashDerrotados != 3 ){
-        turno(selecionados,listaBrock,&ashDerrotados,&brockDerrotados);
+        turno(selecionados,listaBrock,&ashDerrotados,&brockDerrotados,rodadas);
+        rodadas++;
     }
 
     if(brockDerrotados == 0){

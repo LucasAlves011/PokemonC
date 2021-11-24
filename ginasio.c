@@ -15,7 +15,7 @@ void comecarBatalha(ash *jogador){
  *
  */
 }
-void turno(nome_pokemon ashPoke[3], nome_pokemon *brockPoke,int * ashDerrotados, int * brockDerrotados){
+void turno(nome_pokemon ashPoke[3], nome_pokemon *brockPoke,int * ashDerrotados, int * brockDerrotados, int batalhas){
     int dadoJogador = rand() % 100;
     int dadoBrock = rand() % 100;
     int diferenca;
@@ -33,6 +33,12 @@ void turno(nome_pokemon ashPoke[3], nome_pokemon *brockPoke,int * ashDerrotados,
     while(temp->hp <= 0)
         temp = temp -> proximo;
 
+    //TODO talvez aqui vai ficar a quantidade de pokemons restantes.
+    getchar();
+    imprimirDelay("|-----------------------------------  ",0);
+    printf("%d",batalhas);
+    imprimirDelay("  -----------------------------------|",0);
+    getchar();
 
     if (dadoJogador > dadoBrock) {
         jogadorAtk = true;
@@ -42,7 +48,7 @@ void turno(nome_pokemon ashPoke[3], nome_pokemon *brockPoke,int * ashDerrotados,
         printf(BRED"\nO brock ganhou no dado então ele vai começar atacando."RST);
     }
 
-    printf("\n\n");
+//    printf("\n\n");
     getchar();
 
     do{
@@ -79,7 +85,7 @@ void turno(nome_pokemon ashPoke[3], nome_pokemon *brockPoke,int * ashDerrotados,
         }
 
         mostrarHP(ashPokeSelecionado,temp,feedBack);
-        getchar();
+//        getchar();
         //fim do turno, troca do lado de ataque
         jogadorAtk = !jogadorAtk;
 

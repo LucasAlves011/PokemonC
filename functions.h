@@ -51,7 +51,7 @@ typedef struct {
 #define BWHT "\e[1;37m"
 #define RST "\e[0m"
 
-void turno(nome_pokemon ashPoke[3], nome_pokemon *brockPoke,int * ashDerrotados, int * brockDerrotados);
+void turno(nome_pokemon ashPoke[3], nome_pokemon *brockPoke,int * ashDerrotados, int * brockDerrotados, int batalhas);
 void iniciarAsh(nome_pokemon lista[3]);
 nome_pokemon * iniciarBrock();
 void mostrarHP(nome_pokemon *a,nome_pokemon *b,int feedback);
