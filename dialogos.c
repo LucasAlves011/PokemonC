@@ -395,52 +395,36 @@ void jogadorPerdeu(){
 
 void creditos(){
     clear_screen();
-    imprimirDelay("-.````-...-`.-`-...`..---..---..``......\n"
-                  "oo:.`...`....`....-//://+//-----:.``....\n"
-                  ":/+o+:...``..---/sydhhhhhddyo+:/::-.....\n"
-                  "////+oo+:.``-/odmmmNNmmmNNmmdhyyyso::-..\n"
-                  "//////+oso/:shdNNNNNMMMNNNNmmNmmdddh+/:-\n"
-                  "/////+++++sddmNNNNNNNNmmmmNmNNNNNmmmh/:/\n"
-                  "///++++++ohmNNNNNNNmhso+oyhhddmmNNNNmo:/\n"
-                  "++++++/++ohNNmhhhhyo++//:/+++ooshNNNN++/\n"
-                  "++++o++ooosmmysssoo++++////+++++odNNd///\n"
-                  "ooooo/ooossydsssooo++++/::/+++oosdMMo+//\n"
-                  "oooo/ossssssdhddhysooosyhhyysssssdMM+:+/\n"
-                  "oos+osssssssyddmmdhsosyhhhdhyyysshNN+///\n"
-                  "sso+ssssssssydmmmdh//oyhddmmdhsssymyoo/+\n"
-                  "ss+sssssssyyssyyyy-`./osssssoooosyhyos+o\n"
-                  "sossosyyyyyysssss:-..-/ooo+++++osysyoo+s\n"
-                  "soyosyyyyyyyysssyyssssossssoooosyyoo+o+/\n"
-                  "oyssyyyyyyyhyyhhhddhhhyyyhhyssssys+//+oo\n"
-                  "yyoyyyyyyyhs:yydmhyssssyhddyssssyos++s+o\n"
-                  "yoyyyyhhyhy..+yyhhyyyssyysssssyyo++oooo+\n"
-                  "syhhhhhhyh-`::/yyyyhhyysoosssyhy+s+oo+o+\n"
-                  "yhhhhhhhh/.::../yyyysoooosydhhso+++oos+o\n"
-                  "hhhhhhhs+.-/--. -dhhhhyhhdmdyssso+oy+ooo\n"
-                  "hhhddho++://-:.``ydddddddhyyssosossso+os\n"
-                  "ddddh+oo/::-/hs+ohhhhhhyysssssoosysosoos\n"
-                  "dhs+/++/:/+oys/:ohyhhhhyssssssssyyyssoo+\n"
-                  "s+//++//+y+/:/+osyyyyyyysssyyyyyssssoo+/\n"
-                  "+/+++/++/::+osssssssyyyssssyyhyyyyyso/::",4400);
 
-    imprimirDelay("\n\nBy: Lucas Alves, estudante de Ciência da Computação na UFRPE.\n",0);
-    imprimirDelay("Recife - Pernambuco - Brasil.\nNovembro de 2021.",0);
+    imprimirDelay("\n\n           By: Lucas Alves, estudante de Ciência da Computação na UFRPE.\n\n",0);
+
+    imprimirDelay("                                yhhhhhhhhs+.+yhhhhhhhh`  \n"
+                  "                                dNNNNNNNNNNmhNNNNNNNNm`  \n"
+                  "                                ://////+hNNNNd+///////  \n"
+                  "                                        -NNNN/  \n"
+                  "                                oyyy+   -NNNN/ \n"
+                  "                                dNNNs   -NNNN/ \n"
+                  "                                dNNNs   -NNNN/ \n"
+                  "                                dNNNh++odNNNNdo+++++++ \n"
+                  "                                dNNNNNNNNNNNNNNNNNNNNm` \n"
+                  "                                syyyyyyyyo/:osyyyyyyyy   ",2000);
+    imprimirDelay("\n\n\n\t\t\t Departamento de Computação - UFRPE \n",0);
+    imprimirDelay("\t\t\t    Recife - Pernambuco - Brasil.\n\t\t\t\t  Novembro de 2021.",0);
     getchar();
-    imprimirDelay("\n\n\n\t\t\tObrigado por jogar!\n\n\n",0);
+    imprimirDelay("\n\n\n\t\t\t        Obrigado por jogar!\n\n\n",0);
     imprimirDelay(
-                  "                                                                           \n"
-                  "                  .//////////    ////    -////-    .////-                  \n"
-                  "                  +MMMMMMMMMN    mMMm    oMMMMd    yMMMMy                  \n"
-                  "                  +MMMo/////:    mMMm    oMMMMM-  `NMMMMy                  \n"
-                  "                  +MMM:          mMMm    oMMmNMs  +MMdMMy                  \n"
-                  "                  +MMM:          mMMm    oMMdyMN` mMdyMMy                  \n"
-                  "                  +MMMmdddd-     mMMm    oMMd:MM/:MM+yMMy                  \n"
-                  "                  +MMMmmmmm-     mMMm    oMMd mMdyMN`yMMy                  \n"
-                  "                  +MMM:          mMMm    oMMd oMMMMy yMMy                  \n"
-                  "                  +MMM:          mMMm    oMMd .MMMM- yMMy                  \n"
-                  "                  +MMM:          mMMm    oMMd  hMMm  yMMy                  \n"
-                  "                  +MMM:          mMMm    oMMd  /MMo  yMMy                  \n"
-                  "                  /hhh-          yhhy    /hhs  `hh.  ohho                  \n"
-                  "                                                                           \n"
-                  "                                                                           ",2000);
+                  "                                                           \n"
+                  "                     .//////////    ////    -////-    .////-  \n"
+                  "                     +MMMMMMMMMN    mMMm    oMMMMd    yMMMMy  \n"
+                  "                     +MMMo/////:    mMMm    oMMMMM-  `NMMMMy  \n"
+                  "                     +MMM:          mMMm    oMMmNMs  +MMdMMy  \n"
+                  "                     +MMM:          mMMm    oMMdyMN` mMdyMMy  \n"
+                  "                     +MMMmdddd-     mMMm    oMMd:MM/:MM+yMMy  \n"
+                  "                     +MMMmmmmm-     mMMm    oMMd mMdyMN`yMMy  \n"
+                  "                     +MMM:          mMMm    oMMd oMMMMy yMMy  \n"
+                  "                     +MMM:          mMMm    oMMd .MMMM- yMMy  \n"
+                  "                     +MMM:          mMMm    oMMd  hMMm  yMMy  \n"
+                  "                     +MMM:          mMMm    oMMd  /MMo  yMMy  \n"
+                  "                     /hhh-          yhhy    /hhs  `hh.  ohho  \n"
+                  "                                                              \n\n",1300);
 }

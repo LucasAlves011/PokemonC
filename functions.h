@@ -12,10 +12,20 @@
 #include <locale.h>
 #include <unistd.h>
 #include <string.h>
+//chance de pegar pokemon em %
+#define CHANCE_PEGAR_POKEMON 65
 
-#define CHANCE 60
+//numero de pokemons e pokebolas que spawnam no mapa
 #define POKEBOLAS 13
 #define POKEMONS 7
+
+// chance de critico em porcentagem | DANOS GERAIS
+#define CHANCE_CRITICO 12
+
+#define DANO_COMUM 100
+#define DANO_DEFESA 50
+#define DANO_CRITICO 150
+#define EMPATE 20
 
 typedef struct nome_pokemon{
     char nome[25];

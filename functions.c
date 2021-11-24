@@ -45,7 +45,7 @@ int andarS(ash *jogador, int matriz[12][10],bool *flow){
         jogador -> posicao[0]+=1;
         matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
         if(jogador -> pokebolas > 0){
-            if(rand() % 100 < CHANCE){
+            if(rand() % 100 < CHANCE_PEGAR_POKEMON){
                 //conseguiu pegar o pokemon P
                 jogador -> pokemons++;
                 jogador -> pokebolas--;
@@ -103,7 +103,7 @@ int andarW(ash *jogador, int matriz[12][10],bool *flow){
         jogador -> posicao[0]-=1;
         matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
         if(jogador -> pokebolas > 0){
-            if(rand() % 100 < CHANCE){
+            if(rand() % 100 < CHANCE_PEGAR_POKEMON){
                 //conseguiu pegar o pokemon P
                 jogador -> pokemons++;
                 jogador -> pokebolas--;
@@ -161,7 +161,7 @@ int andarA(ash *jogador, int matriz[12][10],bool *flow){
         jogador -> posicao[1]-=1;
         matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
         if(jogador -> pokebolas > 0){
-            if(rand() % 100 < CHANCE){
+            if(rand() % 100 < CHANCE_PEGAR_POKEMON){
                 //conseguiu pegar o pokemon P
                 jogador -> pokemons++;
                 jogador -> pokebolas--;
@@ -219,7 +219,7 @@ int andarD(ash *jogador, int matriz[12][10],bool *flow){
         jogador -> posicao[1]+=1;
         matriz[jogador -> posicao[0]][jogador -> posicao[1]] = 0;
         if(jogador -> pokebolas > 0){
-            if(rand() % 100 < CHANCE){
+            if(rand() % 100 < CHANCE_PEGAR_POKEMON){
                 //conseguiu pegar o pokemon P
                 jogador -> pokemons++;
                 jogador -> pokebolas--;

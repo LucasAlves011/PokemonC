@@ -171,7 +171,8 @@ int main() {
     int brockDerrotados = 0;
     int rodadas = 1;
 
-    printf("\n\nBrock arremessou sua pokebola e seu Croagnunk surgiu, agora é sua vez treinador... a batalha está preste a começar\n");
+    printf("\n\nBrock arremessou sua pokebola e seu Croagnunk surgiu, agora é sua vez treinador... Que a "
+           "sorte esteja com você, a batalha está preste a começar\n");
     while(brockDerrotados != 3 && ashDerrotados != 3 ){
         turno(selecionados,listaBrock,&ashDerrotados,&brockDerrotados,rodadas);
         rodadas++;
