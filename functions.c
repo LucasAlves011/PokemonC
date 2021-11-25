@@ -290,21 +290,24 @@ void adicionarPokemon(char novoNome[] , ash *jogador , char cor[]){
     }
     jogador->tamanho++;
 }
-
+int limitador = 0;
 nome_pokemon selecionarPokemon(ash *jogador, nome_pokemon listaSelecionados[3]){
     int index;
     bool first = true;
     struct nome_pokemon * temp = jogador->inicio;
+
+    printf("\t\t\t        *************************\n");
+    printf("\t\t\t\t|    MONTE SEU TIME:    |\n");
+    printf("\t\t\t        *************************\n\n");
     do{
-        first == true ? first = false : printf(BRED"Digite um número VÁLIDO a um pokemon !"RST);
+        first == true ? first = false : printf(BRED"Digite um número VALIDO a um pokemon !\n"RST);
         listarPokemons(jogador);
         printf("\nSeu time: \n");
-        for (int i = 0; i < 3; ++i)
-            //TODO As vezes ele imprime lixo aqui, concertar futuramente
-            printf("%d - %s%s\t"RST,(i+1),listaSelecionados[i].cor,listaSelecionados[i].nome);
+        for (int i = 0; i < limitador; ++i)
+            printf("%d - %s%s    \t"RST,(i+1),listaSelecionados[i].cor,listaSelecionados[i].nome);
         printf("\n");
 
-        printf("\nDigite o index do pokemon que você vai querer que componha seu time contra Brock: ");
+        printf("\nDigite o index do pokemon que voce vai querer que componha seu time contra Brock: ");
         scanf("%d", &index);
         clear_screen();
     } while (index < 0 || index > jogador -> tamanho);
@@ -314,7 +317,7 @@ nome_pokemon selecionarPokemon(ash *jogador, nome_pokemon listaSelecionados[3]){
     }
 
     if(temp-> anterior  == NULL && temp-> proximo  == NULL ) {
-        //poderia colocar um return *temp aqui mas por boas práticas vou deixa-lo somento no final.
+        //poderia colocar um return *temp aqui mas por boas praticas vou deixa-lo somento no final.
     }
     else if(temp-> anterior  == NULL) {
         temp-> proximo -> anterior = NULL;
@@ -330,6 +333,7 @@ nome_pokemon selecionarPokemon(ash *jogador, nome_pokemon listaSelecionados[3]){
         temp->proximo->anterior = temp->anterior;
     }
     jogador -> tamanho--;
+    limitador++;
     return *temp;
 }
 

@@ -2,8 +2,8 @@
 // Created by lucas on 22/11/2021.
 //
 #include "functions.h"
-enum feedBackGinasio {MenosCinquentaBrock = 1, MenosCemBrock = 2, MenosCinquentaAsh =5 , MenosCemAsh =6  , EmpatouAsh =7 ,
-        EmpatouBrock =3 ,AshRecebeCritico =8  , BrockRecebeCritico =4 };
+enum feedBackGinasio {Padrao = 0, MenosCinquentaBrock = 1, MenosCemBrock = 2,  EmpatouBrock =3, BrockRecebeCritico =4,
+                                    MenosCinquentaAsh =5 , MenosCemAsh =6  , EmpatouAsh =7 ,AshRecebeCritico =8   };
 
 void turno(nome_pokemon ashPoke[3], nome_pokemon *brockPoke,int * ashDerrotados, int * brockDerrotados, int batalhas){
     int dadoJogador = rand() % 100;
@@ -15,11 +15,14 @@ void turno(nome_pokemon ashPoke[3], nome_pokemon *brockPoke,int * ashDerrotados,
     int round = 1;
     int feedBack = 0;
 
+    //seleciona o pokemon do jogador
     for (int i = 0; i < 3; ++i) {
         if(ashPoke[i].hp > 0) {
             ashPokeSelecionado = &ashPoke[i];
         }
     }
+
+    //seleciona o pokemon do Brock
     while(temp->hp <= 0)
         temp = temp -> proximo;
 
@@ -41,13 +44,14 @@ void turno(nome_pokemon ashPoke[3], nome_pokemon *brockPoke,int * ashDerrotados,
 
     if (dadoJogador > dadoBrock) {
         jogadorAtk = true;
-        printf(BYEL"\nVocê ganhou no dado, você vai começar atacando."RST);
+        printf(BYEL"\n\t\tVocê ganhou no dado, você vai comecar atacando."RST);
     } else {
         jogadorAtk = false;
-        printf(BRED"\nO brock ganhou no dado então ele vai começar atacando."RST);
+        printf(BRED"\n\t   O brock ganhou no dado entao ele vai comecar atacando."RST);
     }
 
-//    printf("\n\n");
+    printf("\n");
+    mostrarHP(ashPokeSelecionado,temp,Padrao);
     getchar();
 
     do{
@@ -55,7 +59,7 @@ void turno(nome_pokemon ashPoke[3], nome_pokemon *brockPoke,int * ashDerrotados,
         //dado do ataque/def
         dadoJogador = rand() % 100;
         dadoBrock = rand() % 100;
-        printf("\n/*****************************  Rodada %d  *****************************\\\n",round++);
+        printf("\n/*****************************  Turno %d  *****************************\\\n",round++);
         printf("%sVocê => %d"RST" \t\t\tX\t\t\t%s%d <= Brock"RST,jogadorAtk == true ? BRED : BBLU,dadoJogador,jogadorAtk == true ? BBLU : BRED,dadoBrock);
         getchar();
 
@@ -115,36 +119,38 @@ void turno(nome_pokemon ashPoke[3], nome_pokemon *brockPoke,int * ashDerrotados,
 
     }while(ashPokeSelecionado->hp > 0 && temp->hp > 0);
 
+    printf("\n\n\n");
     //cura de 100 hp para o pokemon vencedor ou até 300 de hp
     if(ashPokeSelecionado->hp > 0){
         if(ashPokeSelecionado->hp <= 200){
-            printf("\nVocê saiu vencedor nessa rodada, o seu %s%s"RST" foi curado em "BGRN"+100 HP"RST" como bônus para a próxima batalha.",
+            printf("\nVocê saiu vencedor nessa rodada, o seu %s%s"RST" foi curado em "BGRN"+100 HP"RST" como bonus para a proxima batalha.",
                    ashPokeSelecionado->cor, ashPokeSelecionado->nome);
             ashPokeSelecionado->hp += 100;
         }else if(ashPokeSelecionado->hp > 200 && ashPokeSelecionado-> hp <= 300){
-            printf("\nVocê saiu vencedor nessa rodada, o seu %s%s"RST" foi curado até o"BGRN"máximo"RST" como bônus para a próxima batalha.",
+            printf("\nVocê saiu vencedor nessa rodada, o seu %s%s"RST" foi curado ate o"BGRN"maximo"RST" como bonus para a proxima batalha.",
                    ashPokeSelecionado->cor, ashPokeSelecionado->nome);
             ashPokeSelecionado -> hp = 300;
         }else if(ashPokeSelecionado -> hp > 300){
-            printf("\nVocê saiu vencedor nessa rodada, o seu %s%s"RST" não foi curado pois está com o HP no máximo.",
+            printf("\nVocê saiu vencedor nessa rodada, o seu %s%s"RST" nao foi curado pois esta com o HP no maximo.",
                    ashPokeSelecionado->cor, ashPokeSelecionado->nome);
         }
         *brockDerrotados += 1;
     }else{
         if(temp->hp <= 200){
-            printf("\nVocê foi o "BRED"perdedor"RST" dessa rodada, o seu próximo pokemon entrara na batalha em breve. O pokemon de "
+            printf("\nVocê foi o "BRED"perdedor"RST" dessa rodada, o seu proximo pokemon entrara na batalha em breve. O pokemon de "
                    "Brock recebeu "BGRN"+100 HP"RST".");
             temp->hp += 100;
         }else if(temp->hp > 200 && temp->hp <= 300){
-            printf("\nVocê foi o "BRED"perdedor"RST" dessa rodada, o seu próximo pokemon entrara na batalha em breve. O pokemon de "
-                   "Brock foi curado ao"BGRN"máximo"RST"como bônus pela vitória.");
+            printf("\nVocê foi o "BRED"perdedor"RST" dessa rodada, o seu proximo pokemon entrara na batalha em breve. O pokemon de "
+                   "Brock foi curado ao"BGRN" maximo "RST"como bonus pela vitoria.");
             temp->hp = 300;
         }else if(temp->hp > 300){
-            printf("\nVocê saiu perdedor nessa rodada, o %s%s não foi curado pois está com o HP no máximo.",
+            printf("\nVocê saiu perdedor nessa rodada, o %s%s nao foi curado pois esta com o HP no maximo.",
                    temp->cor, temp->nome);
         }
         *ashDerrotados += 1;
     }
+    printf("\n\n\n\n");
     getchar();
     clear_screen();
 }
@@ -181,48 +187,62 @@ void iniciarAsh(nome_pokemon lista[]){
 
 void mostrarHP(nome_pokemon *ash,nome_pokemon *brock,int feedback){
     switch (feedback) {
+        case Padrao:
+            printf("\n%s%s"RST,ash->cor,ash->nome);
+            printf("\t\t\tVS\t\t\t%s\n",brock->nome);
+            printf("%d HP",ash->hp);
+            printf(" \t\t\t\t\t\t       %d HP",brock->hp);
+            break;
+
         case MenosCinquentaBrock:
             printf("\n%s%s"RST,ash->cor,ash->nome);
             printf("\t\t\tVS\t\t\t%s\n",brock->nome);
             printf("%d HP",ash->hp);
             printf(" \t\t\t\t\t\t"BRED"(-%d)"RST"%d HP",DANO_DEFESA,brock->hp);
             break;
+
         case MenosCemBrock:
             printf("\n%s%s"RST,ash->cor,ash->nome);
             printf("\t\t\tVS\t\t\t%s\n",brock->nome);
             printf("%d HP",ash->hp);
             printf(" \t\t\t\t\t\t"BRED"(-%d)"RST"%d HP",DANO_COMUM,brock->hp);
             break;
+
         case MenosCinquentaAsh:
             printf("\n%s%s"RST,ash->cor,ash->nome);
             printf("\t\t\tVS\t\t\t%s\n",brock->nome);
             printf("%d HP"BRED"(-%d)"RST,ash->hp,DANO_DEFESA);
             printf(" \t\t\t\t\t\t%d HP",brock->hp);
             break;
+
         case MenosCemAsh:
             printf("\n%s%s"RST,ash->cor,ash->nome);
             printf("\t\t\tVS\t\t\t%s\n",brock->nome);
             printf("%d HP"BRED"(-%d)"RST,ash->hp,DANO_COMUM);
             printf(" \t\t\t\t\t\t%d HP",brock->hp);
             break;
+
         case EmpatouAsh:
             printf("\n%s%s"RST,ash->cor,ash->nome);
             printf("\t\t\tVS\t\t\t%s\n",brock->nome);
             printf("%d HP"BRED"(-%d)"RST,ash->hp,EMPATE);
             printf(" \t\t\t\t\t\t%d HP",brock->hp);
             break;
+
         case EmpatouBrock:
             printf("\n%s%s"RST,ash->cor,ash->nome);
             printf("\t\t\tVS\t\t\t%s\n",brock->nome);
             printf("%d HP",ash->hp);
             printf(" \t\t\t\t\t\t"BRED"(-%d)"RST"%d HP",EMPATE,brock->hp);
             break;
+
         case AshRecebeCritico:
             printf("\n%s%s"RST,ash->cor,ash->nome);
             printf("\t\t\tVS\t\t\t%s\n",brock->nome);
             printf("%d HP"BRED"*(-%d)"RST,ash->hp,DANO_CRITICO);
             printf(" \t\t\t\t\t\t%d HP",brock->hp);
             break;
+
         case BrockRecebeCritico:
             printf("\n%s%s"RST,ash->cor,ash->nome);
             printf("\t\t\tVS\t\t\t%s\n",brock->nome);

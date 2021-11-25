@@ -1,13 +1,13 @@
 #include "functions.h"
 
 /**
- * são 56 espaços navegáveis porem [0,0] e [11,0] nao poderam recebar pokemons ou pokebolas
- * 0 espaços navegáveis
+ * sao 56 espacos navegaveis porem [0,0] e [11,0] nao poderam recebar pokemons ou pokebolas
+ * 0 espacos navegaveis
  * -- 1 VAI REPRESENTAR O JOGADOR --
- * 2 espaços navegáveis com pokemons
- * 3 espaços navegáveis com pokebolas
- * 4 espaços não navegáveis
- * 5 estádio pokemon
+ * 2 espacos navegaveis com pokemons
+ * 3 espacos navegaveis com pokebolas
+ * 4 espacos nao navegaveis
+ * 5 estadio pokemon
  */
 
 int matrizEspacosDisponiveis[3][55]={0};
@@ -31,7 +31,7 @@ int main() {
     int mapaPosicional[12][10] = {0};
     int iterador = 0;
     clear_screen();
-    //iniciar os obstáculos e objetivos no mapa
+    //iniciar os obstaculos e objetivos no mapa
     for (int i = 0; i < 12; ++i) {
         for (int j = 0; j < 10; ++j) {
             switch (j) {
@@ -86,7 +86,7 @@ int main() {
         }
     }
 
-    //Alocar valor a matriz de espaços disponíveis
+    //Alocar valor a matriz de espacos disponiveis
     for (int i = 0; i < 12; ++i) {
         for (int j = 0; j < 10; ++j) {
             if(mapaPosicional[i][j] == 0 && !((i == 11 && j == 0) ||( i == 0 && j == 0))){
@@ -106,8 +106,8 @@ int main() {
     do{
         printf("\n\n");
         imprimir(mapaPosicional,jogador);
-        printf("Faça a sua jogada: w/a/s/d \n");
-        printf("Você atualmente tem %d "BBLU "pokébolas"RST" e %d"BYEL" pokémons"RST". ",jogador.pokebolas,jogador.pokemons);
+        printf("Faca a sua jogada: w/a/s/d \n");
+        printf("Voce atualmente tem %d "BBLU "pokebolas"RST" e %d"BYEL" pokemons"RST". ",jogador.pokebolas,jogador.pokemons);
         scanf("%c",&jogada);
         getchar();
 
@@ -142,7 +142,7 @@ int main() {
 
             default:
                 clear_screen();
-                printf("Você não digitou uma jogada válida\n");
+                printf("Voce nao digitou uma jogada valida\n");
                 break;
         }
     }while (flow);
@@ -162,7 +162,7 @@ int main() {
     for (int i = 0; i < 3; ++i)
         printf("%d - %s%s\t"RST,(i+1),selecionados[i].cor,selecionados[i].nome);
 
-    imprimirDelay("\n\nTime do Brock é formado por: Croagunk, Geodude e Onix.",0);
+    imprimirDelay("\n\nTime do Brock e formado por: Croagunk, Geodude e Onix.",0);
 
     nome_pokemon *listaBrock = iniciarBrock();
     iniciarAsh(selecionados);
@@ -171,8 +171,12 @@ int main() {
     int brockDerrotados = 0;
     int rodadas = 1;
 
-    printf("\n\nBrock arremessou sua pokebola e seu Croagnunk surgiu, agora é sua vez treinador... Que a "
-           "sorte esteja com você, a batalha está preste a começar\n");
+    tutorialGinasio();
+
+    printf("\n\n\n\nBrock arremessou sua pokebola e seu Croagnunk surgiu, agora e sua vez treinador... Que a "
+           "sorte esteja com voce, a batalha esta preste a comecar.\n\n\n\n");
+    getchar();
+    clear_screen();
     while(brockDerrotados != 3 && ashDerrotados != 3 ){
         turno(selecionados,listaBrock,&ashDerrotados,&brockDerrotados,rodadas);
         rodadas++;
@@ -180,8 +184,10 @@ int main() {
 
     if(brockDerrotados == 0){
         jogadorGanhou();
+        getchar();
     }else{
         jogadorPerdeu();
+        getchar();
     }
 
     creditos();
@@ -192,7 +198,7 @@ int main() {
 void injetarPokemonsPokebolas(int x[3][55], int mapa[12][10]){
     /*  3 vai representar as pokebolas
      *  2 vai representar os pokemons
-     *  Vão ser inicializadas 13 pokebolas e 8 pokemons consumindo 20 dos 56 espaços disponíveis
+     *  Vao ser inicializadas 13 pokebolas e 8 pokemons consumindo 20 dos 56 espacos disponiveis
      */
     srand(time(NULL));
     int y = 0;
@@ -222,7 +228,7 @@ void injetarPokemonsPokebolas(int x[3][55], int mapa[12][10]){
 }
 
 void realocarPokemon(int matriz[12][10],ash *jogador) {
-    //Essa funçao so vai realocar no mapa em ate 3 fugas, acima disso os pokemons desaparecem do mapa
+    //Essa funcao so vai realocar no mapa em ate 3 fugas, acima disso os pokemons desaparecem do mapa
     if(pokemonsForagidos < 3){
         srand(time(NULL));
         int x;

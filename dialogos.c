@@ -61,28 +61,28 @@ void feedbackMovimento(int retorno, ash * jogador){
 
         case POKEMON_OBTIDO:
             if(number < 5) {
-                printf("Você capturou um "BGRN"%s"RST".", pokemonsAll[number]);
+                printf("Voce capturou um "BGRN"%s"RST".", pokemonsAll[number]);
                 strcpy(cor,BGRN);
             }
             else if(number >= 5 && number < 10) {
-                printf("Você capturou um "BMAG"%s"RST".", pokemonsAll[number]);
+                printf("Voce capturou um "BMAG"%s"RST".", pokemonsAll[number]);
                 strcpy(cor,BMAG);
             }
             else if(number >= 10 && number < 15) {
-                printf("Você capturou um "BBLU"%s"RST".", pokemonsAll[number]);
+                printf("Voce capturou um "BBLU"%s"RST".", pokemonsAll[number]);
                 strcpy(cor,BBLU);
             }
             else if(number >= 15 && number < 20) {
-                printf("Você capturou um "BYEL"%s"RST".", pokemonsAll[number]);
+                printf("Voce capturou um "BYEL"%s"RST".", pokemonsAll[number]);
                 strcpy(cor,BYEL);
             }
             else if(number >= 20 && number < 25) {
-                printf("Você capturou um "BRED"%s"RST".", pokemonsAll[number]);
+                printf("Voce capturou um "BRED"%s"RST".", pokemonsAll[number]);
                 strcpy(cor,BRED);
             }
             /**
-             * Eu entendo que a chamada dessa função deveria estar junto as funções de movimento,
-            mas como essa função não tem muito impacto na lógica do game não deve ter muito problemas.
+             * Eu entendo que a chamada dessa funcao deveria estar junto as funcões de movimento,
+            mas como essa funcao nao tem muito impacto na lógica do game nao deve ter muito problemas.
              */
             adicionarPokemon(pokemonsAll[number],jogador,cor);
             bufferPokemon = number;
@@ -94,13 +94,13 @@ void feedbackMovimento(int retorno, ash * jogador){
             clear_screen();
             switch (rand() % 3) {
                 case 0:
-                    printf("Você recebeu achou uma pokébola !!!");
+                    printf("Voce recebeu achou uma pokebola !!!");
                     break;
                 case 1:
-                    printf("Você encontrou mais uma pokébola !");
+                    printf("Voce encontrou mais uma pokebola !");
                     break;
                 case 2:
-                    printf("Pokébola encontrada !!");
+                    printf("Pokebola encontrada !!");
                     break;
             }
             printf(BGRN" +1 pokebola"RST);
@@ -109,13 +109,13 @@ void feedbackMovimento(int retorno, ash * jogador){
         case FUGA_POKEBOLA_INSU:
             switch (rand() % 3) {
                 case 0:
-                    printf("Você encontrou um pokémon mas não tinha nenhuma pokébola, o pokémon fugiu.");
+                    printf("Voce encontrou um pokemon mas nao tinha nenhuma pokebola, o pokemon fugiu.");
                     break;
                 case 1:
-                    printf("Você não tinha nenhuma pokébola, o pokémon fugiu.");
+                    printf("Voce nao tinha nenhuma pokebola, o pokemon fugiu.");
                     break;
                 case 2:
-                    printf("Pokémon meteu o pé, você não tinha pokébola.");
+                    printf("Pokemon meteu o pe, voce nao tinha pokebola.");
                     break;
             }
             break;
@@ -123,39 +123,39 @@ void feedbackMovimento(int retorno, ash * jogador){
         case ESTADIO_POKEMON_INSU:
             switch (rand() % 4) {
                 case 0:
-                    printf("Você não tem pokémons suficientes, é necessário no mínimo 3 pokémons.");
+                    printf("Voce nao tem pokemons suficientes, e necessario no minimo 3 pokemons.");
                     break;
                 case 1:
-                    printf("Você precisa de mais pokémons pra enfretar Brock.");
+                    printf("Voce precisa de mais pokemons pra enfretar Brock.");
                     break;
                 case 2:
-                    printf("Para entrar no ginásio é preciso no mínimo 3 pokémons.");
+                    printf("Para entrar no ginasio e preciso no minimo 3 pokemons.");
                     break;
                 case 4:
-                    printf("Onde pensa que vai ?! Você não tem pokpemons suficientes para entrar.");
+                    printf("Onde pensa que vai ?! Voce nao tem pokpemons suficientes para entrar.");
                     break;
             }
             break;
 
         case ESTADIO_BATALHA:
             clear_screen();
-            printf("Você entrou no estádio, boa sorte.");
+            printf("Voce entrou no estadio, boa sorte.");
             getchar();
             break;
 
         case FUGA_POKEMON:
             switch (rand() % 4) {
                 case 0:
-                    printf("Você não conseguiu pegá-lo, que azar.");
+                    printf("Voce nao conseguiu pega-lo, que azar.");
                     break;
                 case 1:
-                    printf("Você não conseguiu pegar o pokémon, ele foi mais esperto.");
+                    printf("Voce nao conseguiu pegar o pokemon, ele foi mais esperto.");
                     break;
                 case 2:
-                    printf("Gastou um pokébola atoa, ele fugiu.");
+                    printf("Gastou um pokebola atoa, ele fugiu.");
                     break;
                 case 3:
-                    printf("O pokémon foi mais esperto, ele fugiu");
+                    printf("O pokemon foi mais esperto, ele fugiu");
                     break;
             }
             printf(BRED" -1 pokebola"RST);
@@ -165,16 +165,16 @@ void feedbackMovimento(int retorno, ash * jogador){
             red();
             switch (rand() % 4) {
                 case 0:
-                    printf("Você não digitou um movimento válido.");
+                    printf("Voce nao digitou um movimento valido.");
                     break;
                 case 1:
-                    printf("Movimento inválido.");
+                    printf("Movimento invalido.");
                     break;
                 case 2:
-                    printf("ahhh coé digita um movimento válido.");
+                    printf("ahhh coe digita um movimento valido.");
                     break;
                 case 3:
-                    printf("Não é possível andar por estas bandas.");
+                    printf("Nao e possivel andar por estas bandas.");
                     break;
             }
             reset();
@@ -201,16 +201,16 @@ void ato1(){
            "MMMMMMMMMNmho--:shNMNNmmNNMNmmmNNNMMMMMMMMNNmNMMMMMMMMMMMMNNNNmmddMMNmmddhy:--ohMMMMM\n"
            "MMMMMMMMMMNmhooshdNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNmhysoyNMMMMM\n"
            "MMMMMMMMMMMNmmNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNNmNMMMMMM\n\n");
-    printf("Olá, pressione enter para começar o jogo...");
+    printf("Ola, pressione enter para comecar o jogo...");
     getchar();
     clear_screen();
-    char msg1[]="Nesse jogo " BRED "você(1)" RST " é um treinador pokémon iniciante e seu objetivo é conquistar a glória vencendo o" BGRN " ginásio pokémon(5)..." RST;
-    char msg2[]="\nMas para isso você tem que conseguir alguns " BYEL "pokémons(2)" RST " caçando-os pelo mapa...";
-    char msg3[]="\nPara pegar um " BYEL "pokémon(2) " RST"é necessário possuir pelo menos uma " BBLU "pokébola(3)" RST " que também estão espalhadas pelo mapa,\nse "BRED"você(1) "
-                RST"se deparar com um" BYEL " pokémon(2) "RST"sem ter nenhuma"BBLU" pokébola(3)" RST", "
-                "ele vai fugir, podendo desaparecer ou não do mapa...";
-    char msg4[] = "\nTer uma "BBLU "pokébola(3)" RST " e achar um" BYEL " pokémon(2)" RST " não significa que irá capturá-lo,\n" BYEL "pokémons(2)" RST " são espertos e não vão ser capturados facilmente.\n\n"
-                  "Para tentar desafiar Brock no" BGRN " ginásio pokémon(5)" RST" você precisa de pelo menos 3 pokémons."
+    char msg1[]="Nesse jogo " BRED "voce(1)" RST " e um treinador pokemon iniciante e seu objetivo e conquistar a gloria vencendo o" BGRN " ginasio pokemon(5)..." RST;
+    char msg2[]="\nMas para isso voce tem que conseguir alguns " BYEL "pokemons(2)" RST " cacando-os pelo mapa...";
+    char msg3[]="\nPara pegar um " BYEL "pokemon(2) " RST"e necessario possuir pelo menos uma " BBLU "pokebola(3)" RST " que tambem estao espalhadas pelo mapa, se "BRED"voce(1) "
+                RST"se deparar com um" BYEL " pokemon(2) "RST"sem ter nenhuma"BBLU" pokebola(3)" RST", "
+                "ele vai fugir, podendo desaparecer ou nao do mapa...";
+    char msg4[] = "\nTer uma "BBLU "pokebola(3)" RST " e achar um" BYEL " pokemon(2)" RST " nao significa que ira captura-lo,\n" BYEL "pokemons(2)" RST " sao espertos e nao vao ser capturados facilmente.\n\n"
+                  "Seu primeiro desafio na jornada sera contra Brock no" BGRN " ginasio pokemon(5)" RST" da Pedra,mas para isso voce precisa de pelo menos 3 pokemons."
                   "\n\nAperte enter para continuar...";
 
     imprimirDelay(msg1,0);
@@ -248,15 +248,14 @@ void tutorial(){
 
     char jogada = ' ';
     clear_screen();
-    char msg1[]="Para mover seu personagem pelo mapa você deve digitar a direção que pretende ir escolhendo entre as opções "
-                BYEL"w/a/s/d"RST" e depois pressionar a tecla enter para confirmar a jogada.\n\nVamos testar os controles em um mapa de testes...";
-    imprimirDelay(msg1,0);
+    imprimirDelay("Para mover seu personagem pelo mapa voce deve digitar a direcao que pretende ir escolhendo entre as opcoes "
+                    BYEL"w/a/s/d"RST" e depois pressionar a tecla enter para confirmar a jogada.\n\nVamos testar os controles em um mapa de testes...",0);
     getchar();
 
     do {
         clear_screen();
-        printf("Você pode navegar pelos caminhos formados pelos 0 brancos. Os "BBLK"X"RST" são caminhos não navegáveis.\n\n");
-        printf("Tente movimentar seu personagem "BRED"(1)"RST": w/a/s/d . "BRED"Para sair do tutorial digite 'q' e confirme.\n\n"RST);
+        printf("Voce pode navegar pelos caminhos formados pelos 0 brancos. Os "BBLK"X"RST" sao caminhos nao navegaveis.\n\n");
+        printf("Tente movimentar seu personagem "BRED"(1)"RST" escolhendo entre as teclas w/a/s/d e depois pressionando a tecla enter.\n\n");
         if (jogada != 'q'){
             for (int i = 0; i < 7; ++i) {
                 for (int j = 0; j < 7; ++j) {
@@ -270,6 +269,7 @@ void tutorial(){
                 printf("\n");
             }
         }
+        printf(BRED"\n\nPara sair do tutorial digite 'q' e confirme.\n\n"RST);
         printf("\n");
         scanf("%c",&jogada);
         getchar();
@@ -277,7 +277,7 @@ void tutorial(){
             case 'w':
             case 'W':
                 if(jogador.x -1 < 0 ||mapaTeste[jogador.x - 1][jogador.y] == 3 ){
-                    printf("Jogada inválida, você deve permanecer dentro do mapa.");
+                    printf("Jogada invalida, voce deve permanecer dentro do mapa.");
                 }else {
                     mapaTeste[jogador.x - 1][jogador.y] = 1;
                     mapaTeste[jogador.x][jogador.y] = 0;
@@ -288,7 +288,7 @@ void tutorial(){
             case 's':
             case 'S':
                 if(jogador.x + 1> 6 ||mapaTeste[jogador.x + 1][jogador.y] == 3){
-                    printf("Jogada inválida, você deve permanecer dentro do mapa.");
+                    printf("Jogada invalida, voce deve permanecer dentro do mapa.");
                 }else {
                     mapaTeste[jogador.x + 1][jogador.y] = 1;
                     mapaTeste[jogador.x][jogador.y] = 0;
@@ -299,7 +299,7 @@ void tutorial(){
             case 'a':
             case 'A':
                 if(jogador.y - 1 < 0||mapaTeste[jogador.x][jogador.y - 1] == 3){
-                    printf("Jogada inválida, você deve permanecer dentro do mapa.");
+                    printf("Jogada invalida, voce deve permanecer dentro do mapa.");
                 } else {
                     mapaTeste[jogador.x][jogador.y - 1] = 1;
                     mapaTeste[jogador.x][jogador.y] = 0;
@@ -310,7 +310,7 @@ void tutorial(){
             case 'd':
             case 'D':
                 if(jogador.y + 1 > 6||mapaTeste[jogador.x][jogador.y + 1] == 3){
-                    printf("Jogada inválida, você deve permanecer dentro do mapa.");
+                    printf("Jogada invalida, voce deve permanecer dentro do mapa.");
                 } else {
                     mapaTeste[jogador.x][jogador.y + 1] = 1;
                     mapaTeste[jogador.x][jogador.y] = 0;
@@ -323,18 +323,17 @@ void tutorial(){
                 break;
 
             default:
-                printf("Você não digitou um movimento válido.");
+                printf("Voce nao escolheu um movimento valido.");
+                getchar();
                 break;
         }
         printf("\n");
 
     } while (jogada != 'q');
 
-    char mensagem[] = "/****************************************************************************************\\\n"
-                      "Aqui se inicia sua jornada para se tornar um mestre pokémon, seu objetivo é derrotar Brock"
-                      " no "BGRN"ginásio(5)"RST" e conseguir a insígnia da Pedra. Boa sorte jogador...";
-
-    imprimirDelay(mensagem,0);
+    imprimirDelay("/***********************************************************************************\\\n"
+                      "Aqui se inicia sua jornada para se tornar um mestre pokemon, seu objetivo e derrotar Brock"
+                      " no "BGRN"ginasio(5)"RST" e conseguir a insignia da Pedra. Boa sorte jogador...",0);
     getchar();
 }
 
@@ -349,7 +348,7 @@ void imprimirDelay(char msg[],int delay){
     }
 }
 
-// função criada somente para debug
+// funcao criada somente para debug
 void testarLista(ash *jogador){
     struct nome_pokemon * temp = jogador->inicio;
     int n = 1;
@@ -361,8 +360,21 @@ void testarLista(ash *jogador){
     printf("\n\n Anterior:%s\nAtual:%s\nProximo:%s",temp->anterior->nome,temp->nome,temp->proximo->nome);
 }
 
+void tutorialGinasio(){
+    imprimirDelay("\n\nA batalha esta prestes a comecar. Serao batalhas de 1 contra 1 ate que o hp de um pokemon chegue a zero. "
+                  "O pokemon vencedor tera uma parcela de seu hp "BGRN"curado"RST" e estara pronto para a batalha contra o proximo pokemon oponente.\n\n",4000);
+    getchar();
+    imprimirDelay("As batalhas são uma alternancia de "BRED"turno de ataque"RST" e "BBLU"turno de defesa"RST". No comeco de cada batalha a sorte vai definir quem comecara "BRED"atacando"RST".\n\n",4000);
+    getchar();
+    imprimirDelay("Fazer uma pontuacao maior estando no "BRED"turno de ataque"RST" faz com que o pokemon oponente receba 100 de dano.\n"
+                    "Caso contrario o pokemon atacante recebera "BBLU"30 de dano.\n"RST
+                  BYEL"Essa regra vale tanto para voce quanto para brock.\n\n"RST,4000);
+    imprimirDelay(BYEL"Danos criticos"RST" podem acontecer, eles causam "BRED"150 de dano"RST" e so podem acontecer em turnos de ataque.",4000);
+    getchar();
+}
+
 void jogadorGanhou(){
-    imprimirDelay("Parabéns treinador, você derrotou Brock nessa batalha. E como recompensa...\n\n",0);
+    imprimirDelay("Parabens treinador, voce derrotou Brock nessa batalha. E como recompensa...\n\n",0);
 
     imprimirDelay("                .-/++oss+-             \n"
                   "        .:/+++osso+///:s.-/oo/.         \n"
@@ -385,18 +397,18 @@ void jogadorGanhou(){
                   "           ./osso/:o..-/++++/-`         \n"
                   "                -+os++:.                \n\n\n",3500);
 
-    imprimirDelay("você conseguiu a sua primeira insignia. A "BYEL"Insignia da Pedra"RST" é a primeira insigna na jornada"
+    imprimirDelay("voce conseguiu a sua primeira insignia. A "BYEL"Insignia da Pedra"RST" e a primeira insigna na jornada"
                         " de um treinador para se tornar um grande mestre pokemon.",0);
 }
 
 void jogadorPerdeu(){
-    imprimirDelay("Infelizmente você não conseguiu ganhar a batalha contra o Brock.",0);
+    imprimirDelay("Infelizmente voce nao conseguiu ganhar a batalha contra o Brock.",0);
 }
 
 void creditos(){
     clear_screen();
 
-    imprimirDelay("\n\n           By: Lucas Alves, estudante de Ciência da Computação na UFRPE.\n\n",0);
+    imprimirDelay("\n\n           By: Lucas Alves, estudante de Ciencia da Computacao na UFRPE.\n\n",0);
 
     imprimirDelay("                                yhhhhhhhhs+.+yhhhhhhhh`  \n"
                   "                                dNNNNNNNNNNmhNNNNNNNNm`  \n"
@@ -408,9 +420,11 @@ void creditos(){
                   "                                dNNNh++odNNNNdo+++++++ \n"
                   "                                dNNNNNNNNNNNNNNNNNNNNm` \n"
                   "                                syyyyyyyyo/:osyyyyyyyy   ",2000);
-    imprimirDelay("\n\n\n\t\t\t Departamento de Computação - UFRPE \n",0);
+
+    imprimirDelay("\n\n\n\t\t\t Departamento de Computacao - UFRPE \n",0);
     imprimirDelay("\t\t\t    Recife - Pernambuco - Brasil.\n\t\t\t\t  Novembro de 2021.",0);
     getchar();
+
     imprimirDelay("\n\n\n\t\t\t        Obrigado por jogar!\n\n\n",0);
     imprimirDelay(
                   "                                                           \n"

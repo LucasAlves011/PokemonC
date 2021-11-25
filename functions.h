@@ -23,7 +23,7 @@
 #define CHANCE_CRITICO 12
 
 #define DANO_COMUM 100
-#define DANO_DEFESA 50
+#define DANO_DEFESA 30
 #define DANO_CRITICO 150
 #define EMPATE 20
 
@@ -77,6 +77,7 @@ void adicionarPokemon(char nome[],ash *jogador,char cor[]);
 void imprimirDelay(char msg[],int delay);
 void ato1();
 void tutorial();
+void tutorialGinasio();
 void jogadorGanhou();
 void jogadorPerdeu();
 void clear_screen();
