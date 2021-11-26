@@ -182,7 +182,7 @@ int main() {
         rodadas++;
     }
 
-    if(brockDerrotados == 0){
+    if(brockDerrotados == 3){
         jogadorGanhou();
         getchar();
     }else{
