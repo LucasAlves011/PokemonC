@@ -23,6 +23,6 @@ próximos pokemons batalham. Esse processo continua até que haja um vencedor.
 Você e Brock jogam dois dados no início de cada round para saber quem vai começar atacando.
 A partir disso, os oponentes intercalam rodadas de ataque e de defesa. Mais dois dados são lançados,
 se você tiver a maior pontuação em sua rodada de ataque, o pokemon de brock sofrerá 100 de dano, mas se a pontuação de brock for superior a sua,
-o seu pokemon que sofrerá 50 de dano. Essa regra, de maneira invertida, também vai valer para a roda de ataque do Brock.
+o seu pokemon que sofrerá 50 de dano. Essa regra, de maneira invertida, também vai valer para a rodada de ataque do Brock.
 
 Caso você vença Brock, você ganha a insígnia da pedra.
